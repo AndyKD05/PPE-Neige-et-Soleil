@@ -1,4 +1,4 @@
-<h2> connexion employe </h2>
+<h2> connexion client </h2>
 <form method="post">
 <table>
 	<tr>
@@ -11,8 +11,12 @@
 	</tr>
 	<tr>
 		<td><input type="reset" name="Annuler" value="Annuler"></td> 
-		<td><input type="submit" name="seConnecterEmp" value="Se Connecter"></td>
-
+		<td><input type="submit" name="seConnecterCli" value="Se Connecter"></td>
+	</tr>
+	<tr>
+		<a href="index.php?page=14">
+			<input type="button" value="Mot de passe oublié">
+		</a>
 	</tr>
 </form>
 </table>

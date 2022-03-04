@@ -7,7 +7,7 @@
 	$unControleur->setTable("saison");
 	$lesSaisons = $unControleur->selectAll();
 
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {
 	$unControleur->setTable("reservation");
 	$laReservation= null;
@@ -38,7 +38,8 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'etat_r'=>'en attente',
 			'idc'=>$_POST['idc'],
 			'idh'=>$_POST['idh'],
-			'ids'=>$_POST['ids']
+			'saison'=>'basse',
+			'annee_s'=>''
 		);
 		$unControleur->insert($tab);
 	}
@@ -50,8 +51,7 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'date_fr'=>$_POST['date_fr'],
 			'etat_r'=>$_POST['etat_r'],
 			'idc'=>$_POST['idc'],
-			'idh'=>$_POST['idh'],
-			'ids'=>$_POST['ids']
+			'idh'=>$_POST['idh']
 		);
 		$where= array("idr"=>$_GET['idr']);
 		$unControleur->update($tab,$where);
@@ -63,6 +63,7 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 	{
 		$mot=$_POST['mot'];
 		$tab = array("idr",
+			"nb_personnes_r",
 			"date_r",
 			"date_dr",
 			"date_fr",

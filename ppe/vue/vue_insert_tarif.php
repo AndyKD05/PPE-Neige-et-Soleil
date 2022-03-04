@@ -20,10 +20,21 @@
 		</tr>
 		<tr>
 				<td>Saison</td>
-				<td><select name ="ids">
+				<td><select name ="saison">
 					<?php 
 						foreach($lesSaisons as $uneSaison){
-							echo "<option value='".$uneSaison['ids']."'>".$uneSaison['ids']." ".$uneSaison['debut_saison']." - ".$uneSaison['fin_saison']."</option>";
+							echo "<option value='".$uneSaison['saison']."'>".$uneSaison['saison']."</option>";
+						}
+					 ?>
+				</select>
+				</td>
+		</tr>
+		<tr>
+				<td>Annee</td>
+				<td><select name ="annee_s">
+					<?php 
+						foreach($lesSaisons as $uneSaison){
+							echo "<option value='".$uneSaison['annee_s']."'>".$uneSaison['annee_s']."</option>";
 						}
 					 ?>
 				</select>

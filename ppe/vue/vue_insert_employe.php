@@ -57,21 +57,31 @@
 				<td><input type="text" name="mdp_emp" value="<?php if($lEmploye != null) echo $lEmploye['mdp_emp']; ?>">
 				</td>
 		</tr>
-		<tr>
+		<?php
+		if ($lEmploye != null)
+		{
+			echo'
+			<tr>
 				<td>Date de depart</td>
-				<td><input type="date" name="date_depart" value="<?php if($lEmploye != null) echo $lEmploye['date_depart']; ?>">
+					<td><input type="date" name="date_depart" value="'; if($lEmploye != null){ echo $lEmploye['date_depart'];} echo'">
 				</td>
-		</tr>
+			</tr>';
+		}?>
 		<tr>
-				<td><input type="reset" name="Annuler" value="Annuler"></td>
-				<td><input type="submit" 
+			<td><input type="reset" name="Annuler" value="Annuler"></td>
+				
 				<?php 
 				if ($lEmploye != null)
-					echo ' name ="Modifier" value="Modifier">'; 
+				{
+					echo '<tr><td><input type="submit" name ="Modifier" value="Modifier">';
+					echo '<td><input type="submit" name ="ModifierMDP" value="Modifier mot de passe"></tr>';
+				}
 				else
-					echo ' name="Valider" value="Valider">';
+				{
+					echo ' <td><input type="submit" name="Valider" value="Valider">';
+				}
 				?>
-				</td>
+			</td>
 		</tr>		
 	</table>
 </form>

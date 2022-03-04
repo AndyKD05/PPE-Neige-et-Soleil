@@ -5,7 +5,7 @@
 	$unControleur->setTable("contrat_mandat_locatif");
 	$lesCML = $unControleur->selectAll();
 
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {
 	$unControleur->setTable("date_exception");
 	$lException= null;
