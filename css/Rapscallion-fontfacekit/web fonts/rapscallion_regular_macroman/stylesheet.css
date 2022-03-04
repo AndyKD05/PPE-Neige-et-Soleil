@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'rapscallionregular';
+    src: url('RAPSCALL-webfont.eot');
+    src: url('RAPSCALL-webfont.eot?#iefix') format('embedded-opentype'),
+         url('RAPSCALL-webfont.woff2') format('woff2'),
+         url('RAPSCALL-webfont.woff') format('woff'),
+         url('RAPSCALL-webfont.ttf') format('truetype'),
+         url('RAPSCALL-webfont.svg#rapscallionregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

@@ -1,0 +1,33 @@
+body {
+
+  padding-top: 100px;
+
+}
+
+.titre {
+
+  text-align: center;
+  color:#FF6347;
+}
+
+.texte {
+
+  font-size: 25px;
+}
+
+.belletable {
+    color:#FF6347;
+    font-style: italic;
+
+}
+
+.logo {
+
+  font-size: 25px;
+  font-family: Brush Script MT;
+}
+.button1 {
+
+  padding-right: 5px;
+
+}
