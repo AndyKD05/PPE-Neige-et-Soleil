@@ -25,17 +25,6 @@
 				</select></td>
 		</tr>
 		<tr>
-				<td>Proprietaire</td>
-				<td><select name ="idp">
-					<?php 
-						foreach($lesProprietaires as $unProprietaire){
-							echo "<option value='".$unProprietaire['idp']."'>".$unProprietaire['idp']." ".$unProprietaire['prenom_p']." ".$unProprietaire['nom_p']."</option>";
-						}
-					 ?>
-				</select>
-				</td>
-		</tr>
-		<tr>
 				<td>Habitation</td>
 				<td><select name ="idh">
 					<?php 

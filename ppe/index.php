@@ -14,29 +14,104 @@
 <body>
 	<center>
 		<h1> Neige et soleil</h1>
-		<?php 
+
+		<?php
+		require_once("home.php");
 		if (! isset($_SESSION['email']))
 		{
-			require_once("vue/vue_connexion_emp.php");
-		}
-		if(isset($_POST['seConnecter']))
-		{
-			$email= $_POST['email'].'|emp';
-			$mdp= $_POST['mdp'];
-			$where = array('email'=>$email ,'mdp'=>$mdp);
-			$unControleur->setTable("user");
-			$unUser = $unControleur->selectWhere($where);
-			if(isset($unUser['email']))
+			echo'
+			<h2> connexion </h2>
+			<a href="index.php?page=15">
+				<input type="button" value="Employé">
+			</a>
+			<a href="index.php?page=16">
+				<input type="button" value="Propriétaire">
+			</a>
+			<a href="index.php?page=17">
+				<input type="button" value="Client">
+			</a>
+			<h2> Inscription </h2>
+			<a href="index.php?page=18">
+				<input type="button" value="Client">
+			</a>
+			<a href="index.php?page=19">
+				<input type="button" value="Propriétaire">
+			</a>';
+			if(isset($_POST['seConnecterEmp']))
 			{
-				$_SESSION['email'] = $unUser['email'];
-			//	$_SESSION['nom'] = $unUser['nom'];
-			//	$_SESSION['prenom'] = $unUser['prenom'];
-				$_SESSION['role'] = $unUser['role'];
-				header("Location: index.php");
-			}else{
-				echo "<br/> Vérifiez vos identifiants";
+				$email= $_POST['email']."|emp";
+				$mdp= hash('sha256',$_POST['mdp']);
+				$where = array('email'=>$email ,'mdp'=>$mdp);
+				$unControleur->setTable("user");
+				$unUser = $unControleur->selectWhere($where);
+				if(isset($unUser['email']))
+				{
+					$id_role = explode('|', $unUser['id']);
+					$_SESSION['email'] = $unUser['email'];
+					$_SESSION['id'] = $id_role[0];
+					$_SESSION['role'] = $id_role[1];
+					header("Location: index.php");
+				}else{
+					echo "<br/> Vérifiez vos identifiants";
+				}
 			}
+			if(isset($_POST['seConnecterProp']))
+			{
+				$email= $_POST['email']."|prop";
+				$mdp= hash('sha256',$_POST['mdp']);
+				$where = array('email'=>$email ,'mdp'=>$mdp);
+				$unControleur->setTable("user");
+				$unUser = $unControleur->selectWhere($where);
+				if(isset($unUser['email']))
+				{
+					$id_role = explode('|', $unUser['id']);
+					$_SESSION['email'] = $unUser['email'];
+					$_SESSION['id'] = $id_role[0];
+					$_SESSION['role'] = $id_role[1];
+					header("Location: index.php");
+				}else{
+					echo "<br/> Vérifiez vos identifiants";
+				}
+			}
+			
+			
+			if(isset($_POST['seConnecterCli']))
+			{
+				$email= $_POST['email']."|cli";
+				$mdp= hash('sha256',$_POST['mdp']);
+				$where = array('email'=>$email ,'mdp'=>$mdp);
+				$unControleur->setTable("user");
+				$unUser = $unControleur->selectWhere($where);
+				if(isset($unUser['email']))
+				{
+					$id_role = explode('|', $unUser['id']);
+					$_SESSION['email'] = $unUser['email'];
+					$_SESSION['id'] = $id_role[0];
+					$_SESSION['role'] = $id_role[1];
+					header("Location: index.php");
+				}else{
+					echo "<br/> Vérifiez vos identifiants";
+				}
+			}
+			if(isset($_GET['page']))
+			{
+				$page = $_GET['page'];
+			}else{
+				$page = 0;
+			}
+			switch ($page) {
+				case 0: require_once ("home.php"); break;
+				case 13: require_once ("gestion_forget_pass_prop.php"); break;
+				case 14: require_once ("gestion_forget_pass_cli.php"); break;
+				case 15: require_once ("vue/vue_connexion_emp.php"); break;
+				case 16: require_once ("vue/vue_connexion_prop.php"); break;
+				case 17: require_once ("vue/vue_connexion_cli.php"); break;
+				case 18: require_once ("gestion_inscription_client.php"); break;
+				case 19: require_once ("gestion_inscription_proprietaire.php"); break;
+			}
+
 		}
+		
 		if(isset($_SESSION['email']))
 		{
 			echo '
@@ -44,40 +119,63 @@
 
 		<a href="index.php?page=0">
 			<img src="images/home.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=1">
-			<img src="images/centre.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=2">
-			<img src="images/type.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=3">
-			<img src="images/patient.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=4">
-			<img src="images/vaccin.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=5">
-			<img src="images/vaccination.png" height="100" width="100">
-		</a>
+		</a>';
+		if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
+		{
+			echo'
+			<a href="index.php?page=2">
+				<img src="images/offre.png" height="100" width="100">
+			</a>
+			<a href="index.php?page=3">
+				<img src="images/client.png" height="100" width="100">
+			</a>';
+		}
+		if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
+		{
+			echo'
+			<a href="index.php?page=4">
+				<img src="images/client.jpg" height="100" width="100">
+			</a>';
+		}
+		if($_SESSION['role']=="emp")
+		{
+			echo'
+			<a href="index.php?page=5">
+				<img src="images/employe.png" height="100" width="100">
+			</a>';
+		}
+		echo'
 		<a href="index.php?page=6">
-			<img src="images/vaccination.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=7">
-			<img src="images/vaccination.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=8">
-			<img src="images/vaccination.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=9">
-			<img src="images/vaccination.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=10">
-			<img src="images/vaccination.png" height="100" width="100">
-		</a>
-		<a href="index.php?page=11">
-			<img src="images/vaccination.png" height="100" width="100">
-		</a>
+			<img src="images/saison.png" height="100" width="100">
+		</a>';
+		if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
+		{
+			echo'
+			<a href="index.php?page=7">
+				<img src="images/CML.png" height="100" width="100">
+			</a>
+			<a href="index.php?page=8">
+				<img src="images/exception.png" height="100" width="100">
+			</a>';
+		}
+		if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
+		{
+			echo'
+			<a href="index.php?page=9">
+				<img src="images/reservation.png" height="100" width="100">
+			</a>
+			<a href="index.php?page=10">
+				<img src="images/CDL.jpg" height="100" width="100">
+			</a>';
+		}
+		if($_SESSION['role']=="emp")
+		{
+			echo'
+			<a href="index.php?page=11">
+				<img src="images/tarif.jpg" height="100" width="100">
+			</a>';
+		}
+		echo'
 		<a href="index.php?page=20">
 			<img src="images/deconnection.jpg" height="100" width="100">
 		</a>
@@ -91,7 +189,6 @@
 			}
 			switch ($page) {
 				case 0: require_once ("home.php"); break;
-				case 1: require_once ("gestion_centres.php"); break;
 				case 2: require_once ("gestion_offres.php"); break;
 				case 3: require_once ("gestion_proprietaires.php"); break;
 				case 4: require_once ("gestion_clients.php"); break;

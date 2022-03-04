@@ -63,13 +63,36 @@
 				</td>
 		</tr>
 		<tr>
+				<td>Question secrète</td>
+				<td><select name="question">
+					<option value="ecoleprimaire"> Ecole primaire </option>
+					<option value="nomjeunefille"> Nom de jeune fille de votre mère </option>
+					<option value="premieramour"> Premier amour </option>
+					<option value="profprefere"> Professeur préféré </option>
+					<option value="villerencontreparent"> Ville de rencontre de vos parents </option>
+				</select></td>
+		</tr>
+		<tr>
+				<td>Réponse secrète</td>
+				<td><input type="text" name="reponse"></td>
+		</tr>
+		<tr>
 				<td><input type="reset" name="Annuler" value="Annuler"></td>
-				<td><input type="submit" 
 				<?php 
-				if ($leProprietaire != null)
-					echo ' name ="Modifier" value="Modifier">'; 
-				else
-					echo ' name="Valider" value="Valider">';
+				if($_SESSION['role']=='emp')
+				{
+					if ($leProprietaire != null)
+					{
+						echo '<td><input type="submit" name ="Modifier" value="Modifier">'; 
+					}
+					else
+					{
+						echo '<td><input type="submit" name="Valider" value="Valider">';
+					}
+				}elseif($_SESSION['role']=='prop' and $leProprietaire != null)
+				{
+					echo '<td><input type="submit" name ="Modifier" value="Modifier">'; 
+				}
 				?>
 				</td>
 		</tr>		

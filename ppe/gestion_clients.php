@@ -1,6 +1,8 @@
 <h2>Gestion des clients</h2>
 <?php
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+$pass = '/(?=\S{8,})(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])/';
+$nom = '/^[^@&"()!_$*€£`+=\/;?#]+$/';
+if (isset($_SESSION['email']) and ($_SESSION['role']=="emp" or $_SESSION['role']=="cli"))
 {
 	$unControleur->setTable("client");
 	$leClient= null;
@@ -23,7 +25,8 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 	require_once("vue/vue_insert_client.php");
 	if(isset($_POST['Valider']))
 	{
-		$tab= array('nom_c'=>$_POST['nom_c'],
+        if(preg_match($pass, $_POST['mdp_c']) and preg_match($nom, $_POST['nom_c']) and preg_match($nom, $_POST['prenom_c'])){
+            $tab= array('nom_c'=>$_POST['nom_c'],
 			'prenom_c'=>$_POST['prenom_c'],
 			'tel_c'=>$_POST['tel_c'],
 			'mail_c'=>$_POST['mail_c'],
@@ -32,27 +35,39 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'rue_c'=>$_POST['rue_c'],
 			'cp_c'=>$_POST['cp_c'],
 			'ville_c'=>$_POST['ville_c'],
-			'mdp_c'=>$_POST['mdp_c']
+			'mdp_c'=>hash('sha256',$_POST['mdp_c']),
+			'question'=>hash('sha256',$_POST['question']),
+			'reponse'=>hash('sha256',$_POST['reponse'])
 		);
 		$unControleur->insert($tab);
+        }else{
+            echo 'Critères de nom, prenom ou mot de passe non respecté';
+        }
+		
 	}
 	if(isset($_POST['Modifier']))
 	{
-		$tab= array('nom_c'=>$_POST['nom_c'],
-			'prenom_c'=>$_POST['prenom_c'],
-			'tel_c'=>$_POST['tel_c'],
-			'mail_c'=>$_POST['mail_c'],
-			'date_naiss_c'=>$_POST['date_naiss_c'],
-			'numero_c'=>$_POST['numero_c'],
-			'rue_c'=>$_POST['rue_c'],
-			'cp_c'=>$_POST['cp_c'],
-			'ville_c'=>$_POST['ville_c'],
-			'mdp_c'=>$_POST['mdp_c']
-		);
-		$where= array("idc"=>$_GET['idc']
-	);
-		$unControleur->update($tab,$where);
-		header("location: index.php?page=4");
+		if(preg_match($pass, $_POST['mdp_c']) and preg_match($nom, $_POST['nom_c']) and preg_match($nom, $_POST['prenom_c']))
+		{
+			$tab= array('nom_c'=>$_POST['nom_c'],
+				'prenom_c'=>$_POST['prenom_c'],
+				'tel_c'=>$_POST['tel_c'],
+				'mail_c'=>$_POST['mail_c'],
+				'date_naiss_c'=>$_POST['date_naiss_c'],
+				'numero_c'=>$_POST['numero_c'],
+				'rue_c'=>$_POST['rue_c'],
+				'cp_c'=>$_POST['cp_c'],
+				'ville_c'=>$_POST['ville_c'],
+				'mdp_c'=>hash('sha256',$_POST['mdp_c']),
+				'question'=>hash('sha256',$_POST['question']),
+				'reponse'=>hash('sha256',$_POST['reponse'])
+			);
+			$where= array("idc"=>$_GET['idc']);
+			$unControleur->update($tab,$where);
+			header("location: index.php?page=4");
+		}else{
+            echo 'Critères de nom, prenom ou mot de passe non respecté';
+        }
 	}
 }
 	$unControleur->setTable("client");

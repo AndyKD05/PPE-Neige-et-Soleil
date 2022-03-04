@@ -59,17 +59,6 @@
 				</td>
 		</tr>
 		<tr>
-				<td>Saison</td>
-				<td><select name ="ids">
-					<?php 
-						foreach($lesSaisons as $uneSaison){
-							echo "<option value='".$uneSaison['ids']."'>".$uneSaison['saison']." ".$uneSaison['debut_saison']."/".$uneSaison['fin_saison']."</option>";
-						}
-					 ?>
-				</select>
-				</td>
-		</tr>
-		<tr>
 				<td><input type="reset" name="Annuler" value="Annuler"></td>
 				<td><input type="submit" 
 				<?php 

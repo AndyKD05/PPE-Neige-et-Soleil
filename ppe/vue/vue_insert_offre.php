@@ -34,8 +34,12 @@
 		</tr>
 		<tr>
 				<td>Type</td>
-				<td><input type="text" name="type_h" value="<?php if($lhabitation != null) echo $lhabitation['type_h']; ?>">
-				</td>
+				<td><select name="type_h">
+					<option value="maison" <?php if($lhabitation != null && $lhabitation['type_h']=='maison') echo "selected"; ?> > Maison </option>
+					<option value="appartement" <?php if($lhabitation != null && $lhabitation['type_h']=='appartement') echo "selected"; ?> > Appartement </option>
+					<option value="chalet" <?php if($lhabitation != null && $lhabitation['type_h']=='chalet') echo "selected"; ?> > Chalet </option>
+					<option value="villa" <?php if($lhabitation != null && $lhabitation['type_h']=='villa') echo "selected"; ?> > Villa </option>
+				</select></td>
 		</tr>
 		<tr>
 				<td>Capacité d'accueil</td>
@@ -64,12 +68,27 @@
 		</tr>
 		<tr>
 				<td>Cave</td>
-				<td><input type="text" name="cave_h" value="<?php if($lhabitation != null) echo $lhabitation['cave_h']; ?>">
-				</td>
+				<td><select name="cave_h">
+					<option value="non" <?php if($lhabitation != null && $lhabitation['cave_h']=='non') echo "selected"; ?> > Non </option>
+					<option value="oui" <?php if($lhabitation != null && $lhabitation['cave_h']=='oui') echo "selected"; ?> > Oui </option>
+				</select></td>
 		</tr>
 		<tr>
 				<td>Local a ski</td>
-				<td><input type="text" name="local_a_ski_h" value="<?php if($lhabitation != null) echo $lhabitation['local_a_ski_h']; ?>">
+				<td><select name="local_a_ski_h">
+					<option value="non" <?php if($lhabitation != null && $lhabitation['local_a_ski_h']=='non') echo "selected"; ?> > Non </option>
+					<option value="oui" <?php if($lhabitation != null && $lhabitation['local_a_ski_h']=='oui') echo "selected"; ?> > Oui </option>
+				</select></td>
+		</tr>
+		<tr>
+				<td>Proprietaire</td>
+				<td><select name ="idp">
+					<?php 
+						foreach($lesProprietaires as $unProprietaire){
+							echo "<option value='".$unProprietaire['idp']."'>".$unProprietaire['idp']." ".$unProprietaire['prenom_p']." ".$unProprietaire['nom_p']."</option>";
+						}
+					 ?>
+				</select>
 				</td>
 		</tr>
 		<tr>

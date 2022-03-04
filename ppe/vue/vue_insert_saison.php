@@ -4,8 +4,11 @@
 	<table border="0">
 		<tr>
 				<td>Saison</td>
-				<td><input type="text" name="saison" value="<?php if($laSaison != null) echo $laSaison['saison']; ?>">
-				</td>
+				<td><select name="saison">
+					<option value="haute" <?php if($laSaison != null && $laSaison['saison']=='haute') echo "selected"; ?> > Haute </option>
+					<option value="moyenne" <?php if($laSaison != null && $laSaison['saison']=='moyenne') echo "selected"; ?> > Moyenne </option>
+					<option value="basse" <?php if($laSaison != null && $laSaison['saison']=='basse') echo "selected"; ?> > Basse </option>
+				</select></td>
 		</tr>
 		<tr>
 				<td>debut saison</td>
