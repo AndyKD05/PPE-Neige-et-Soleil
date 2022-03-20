@@ -12,9 +12,9 @@ if ($_SERVER['SERVER_NAME']=="127.0.0.1" || $_SERVER['SERVER_NAME']=="localhost"
    } 
   else // 1and1
    { 
-   $serveur ="db5006845924.hosting-data.io";
-   $bdd = "dbs5651848";
-   $user="dbu2909969";
+   $serveur ="db5006990148.hosting-data.io";
+   $bdd = "dbs5771376";
+   $user="dbu372597";
    $mdp="Wanuke70"; 
   }   
   echo "<br/><h2>-------------serveur=".$serveur.", bdd=".$bdd.", user=".$user."</h2>";
