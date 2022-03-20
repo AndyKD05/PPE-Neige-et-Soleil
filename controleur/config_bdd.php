@@ -17,5 +17,5 @@ if ($_SERVER['SERVER_NAME']=="127.0.0.1" || $_SERVER['SERVER_NAME']=="localhost"
    $user="dbu372597";
    $mdp="Wanuke70"; 
   }   
-  echo "<br/><h2>-------------serveur=".$serveur.", bdd=".$bdd.", user=".$user."</h2>";
+  //echo "<br/><h2>-------------serveur=".$serveur.", bdd=".$bdd.", user=".$user."</h2>";
 ?>
