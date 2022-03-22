@@ -83,7 +83,7 @@
         <div class="row">
           <div class="col-lg-10 mx-auto">
             <h1 class="text-uppercase">
-              <strong class="presentation">Bienvenue<br /> sur Neige et Soleil</strong>
+              <strong class="presentation">Bienvenue<br /> sur Neige et Soleil -- TEST BRANCHE ANDY</strong>
             <hr width="50%" color="#FFA07A" />
             </h1>
 
