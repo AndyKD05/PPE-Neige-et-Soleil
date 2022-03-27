@@ -102,7 +102,7 @@
 
 <footer class="py-5">
 <div class="container">
-  <p class="m-1 text-center text-white">Copyright &copy;Félix Millon & Théo Chesnais & Andy Kadiambu</p>
+  <p class="m-1 text-center text-white">Copyright &copy;Félix Millon & Théo Chesnais & Andy Kadiambu aaa</p>
 </div>
 </footer>
 
