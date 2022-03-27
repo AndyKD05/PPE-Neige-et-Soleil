@@ -126,5 +126,18 @@
 			$update = $this->unPdo->prepare($requete);
 			$update->execute($donnees);
 		}
+		public function callproc($nom,$tab)
+		{
+			if($tab!=null)
+			{
+				$chaine="'".implode("','", $tab)."'";
+				$requete ='call '.$nom.'('.$chaine.');';
+			}else
+			{
+				$requete ='call '.$nom.'();';
+			}
+			$proc = $this->unPdo->prepare($requete);
+			$proc->execute();
+		}
 	}
 ?>

@@ -1,6 +1,8 @@
-<h2>Gestion des employes</h2>
+
 <?php
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+$pass = '/(?=\S{8,})(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])/';
+$nom = '/^[^@&"()!_$*€£`+=\/;?#]+$/';
+if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {
 	$unControleur->setTable("employes");
 	$lEmploye= null;
@@ -20,10 +22,19 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			break;
 		}
 	}
+	if(!isset($_POST['date_depart']))
+	{
+		$_POST['date_depart']=null;
+	}
 	require_once("vue/vue_insert_employe.php");
 	if(isset($_POST['Valider']))
 	{
-		$tab= array('nom_emp'=>$_POST['nom_emp'],
+		if ($_POST['date_depart']=='')
+		{
+			$_POST['date_depart']=NULL;
+		} 
+		if(preg_match($pass, $_POST['mdp_emp']) and preg_match($nom, $_POST['nom_emp']) and preg_match($nom, $_POST['prenom_emp'])){
+       		$tab= array('nom_emp'=>$_POST['nom_emp'],
 			'prenom_emp'=>$_POST['prenom_emp'],
 			'tel_emp'=>$_POST['tel_emp'],
 			'mail_emp'=>$_POST['mail_emp'],
@@ -33,14 +44,23 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'CP_emp'=>$_POST['CP_emp'],
 			'ville_emp'=>$_POST['ville_emp'],
 			'date_embauche'=>$_POST['date_embauche'],
-			'mdp_emp'=>$_POST['mdp_emp'],
+			'mdp_emp'=>hash('sha256',$_POST['mdp_emp']),
 			'date_depart'=>$_POST['date_depart']
-		);
-		$unControleur->insert($tab);
+			);
+			$unControleur->insert($tab);
+        }else{
+            echo 'Critères de nom, prenom ou mot de passe non respecté';
+        }
+		
 	}
 	if(isset($_POST['Modifier']))
 	{
-		$tab= array('nom_emp'=>$_POST['nom_emp'],
+		if ($_POST['date_depart']=='')
+		{
+			$_POST['date_depart']=NULL;
+		} 
+		if(preg_match($nom, $_POST['nom_emp']) and preg_match($nom, $_POST['prenom_emp'])){
+			$tab= array('nom_emp'=>$_POST['nom_emp'],
 			'prenom_emp'=>$_POST['prenom_emp'],
 			'tel_emp'=>$_POST['tel_emp'],
 			'mail_emp'=>$_POST['mail_emp'],
@@ -50,13 +70,27 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'CP_emp'=>$_POST['CP_emp'],
 			'ville_emp'=>$_POST['ville_emp'],
 			'date_embauche'=>$_POST['date_embauche'],
-			'mdp_emp'=>$_POST['mdp_emp'],
 			'date_depart'=>$_POST['date_depart']
-		);
-		$where= array("idemp"=>$_GET['idemp']
-	);
-		$unControleur->update($tab,$where);
-		header("location: index.php?page=5");
+			);
+			$where= array("idemp"=>$_GET['idemp']);
+			$unControleur->update($tab,$where);
+			header("location: index.php?page=5");
+		}else{
+            echo 'Critères de nom, prenom ou mot de passe non respecté';
+        }
+	}
+	if(isset($_POST['ModifierMDP']))
+	{
+		if(preg_match($pass, $_POST['mdp_emp'])){
+			$tab= array(
+			'mdp_emp'=>hash('sha256',$_POST['mdp_emp'])
+			);
+			$where= array("idemp"=>$_GET['idemp']);
+			$unControleur->update($tab,$where);
+			header("location: index.php?page=5");
+		}else{
+            echo 'Critères de mot de passe non respecté';
+        }
 	}
 }
 	$unControleur->setTable("employes");
@@ -82,7 +116,5 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 	{
 		$lesEmployes = $unControleur->selectAll ();
 	}
-
-	
 	require_once("vue/vue_les_employes.php");
 ?>

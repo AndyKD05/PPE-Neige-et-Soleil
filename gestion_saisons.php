@@ -1,21 +1,22 @@
-<h2>Gestion des clients</h2>
+
 <?php
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {
 	$unControleur->setTable("saison");
 	$laSaison= null;
-	if(isset($_GET['action']) and isset($_GET['ids']))
+	if(isset($_GET['action']) and isset($_GET['saison'])  and isset($_GET['annee_s']))
 	{
-		$ids = $_GET['ids'];
+		$saison = $_GET['saison'];
+		$annee_s = $_GET['annee_s'];
 		$action = $_GET['action'];
 		switch ($action)
 		{
 			case "sup" :
-			$where = array('ids'=>$ids);
+			$where = array('saison'=>$saison,'annee_s'=>$annee_s);
 			$unControleur->delete($where);
 			break;
 			case "edit" :
-			$where = array('ids'=>$ids);
+			$where = array('saison'=>$saison,'annee_s'=>$annee_s);
 			$laSaison=$unControleur->selectWhere($where);
 			break;
 		}
@@ -28,7 +29,7 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'fin_saison'=>$_POST['fin_saison'],
 			'annee_s'=>$_POST['annee_s']
 		);
-		$unControleur->insert($tab);
+		$unControleur->insertnonull($tab);
 	}
 	if(isset($_POST['Modifier']))
 	{
@@ -37,8 +38,7 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'fin_saison'=>$_POST['fin_saison'],
 			'annee_s'=>$_POST['annee_s']
 		);
-		$where= array("ids"=>$_GET['ids']
-	);
+		$where= array("saison"=>$_GET['saison'],"annee_s"=>$_GET['annee_s']);
 		$unControleur->update($tab,$where);
 		header("location: index.php?page=6");
 	}
@@ -47,7 +47,7 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 	if (isset($_POST['Rechercher']))
 	{
 		$mot=$_POST['mot'];
-		$tab = array("ids",
+		$tab = array(
 			"saison",
 			"debut_saison",
 			"fin_saison",

@@ -1,6 +1,8 @@
-<h2>Gestion des proprietaires</h2>
+
 <?php
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+$pass = '/(?=\S{8,})(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])/';
+$nom = '/^[^@&"()!_$*€£`+=\/;?#]+$/';
+if (isset($_SESSION['email']) and ($_SESSION['role']=='emp' or $_SESSION['role']=='prop'))
 {
 	$unControleur->setTable("proprietaire");
 	$leProprietaire= null;
@@ -24,7 +26,8 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 	require_once("vue/vue_insert_proprietaire.php");
 	if(isset($_POST['Valider']))
 	{
-		$tab= array('nom_p'=>$_POST['nom_p'],
+		if(preg_match($pass, $_POST['mdp_p']) and preg_match($nom, $_POST['nom_p']) and preg_match($nom, $_POST['prenom_p'])){
+       		$tab= array('nom_p'=>$_POST['nom_p'],
 			'prenom_p'=>$_POST['prenom_p'],
 			'tel_p'=>$_POST['tel_p'],
 			'mail_p'=>$_POST['mail_p'],
@@ -35,29 +38,40 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'ville_p'=>$_POST['ville_p'],
 			'pays_p'=>$_POST['pays_p'],
 			'rib_p'=>$_POST['rib_p'],
-			'mdp_p'=>$_POST['mdp_p']
-		);
-		$unControleur->insert($tab);
+			'mdp_p'=>hash('sha256',$_POST['mdp_p']),
+			'question'=>hash('sha256',$_POST['question']),
+			'reponse'=>hash('sha256',$_POST['reponse'])
+			);
+			$unControleur->insert($tab);
+        }else{
+            echo 'Critères de nom, prenom ou mot de passe non respecté';
+        }
+		
 	}
 	if(isset($_POST['Modifier']))
 	{
-		$tab= array('nom_p'=>$_POST['nom_p'],
-			'prenom_p'=>$_POST['prenom_p'],
-			'tel_p'=>$_POST['tel_p'],
-			'mail_p'=>$_POST['mail_p'],
-			'date_naiss_p'=>$_POST['date_naiss_p'],
-			'numero_p'=>$_POST['numero_p'],
-			'rue_p'=>$_POST['rue_p'],
-			'CP_p'=>$_POST['CP_p'],
-			'ville_p'=>$_POST['ville_p'],
-			'pays_p'=>$_POST['pays_p'],
-			'rib_p'=>$_POST['rib_p'],
-			'mdp_p'=>$_POST['mdp_p']
-		);
-		$where= array("idp"=>$_GET['idp']
-	);
-		$unControleur->update($tab,$where);
-		header("location: index.php?page=3");
+		if(preg_match($pass, $_POST['mdp_p']) and preg_match($nom, $_POST['nom_p']) and preg_match($nom, $_POST['prenom_p'])){
+			$tab= array('nom_p'=>$_POST['nom_p'],
+				'prenom_p'=>$_POST['prenom_p'],
+				'tel_p'=>$_POST['tel_p'],
+				'mail_p'=>$_POST['mail_p'],
+				'date_naiss_p'=>$_POST['date_naiss_p'],
+				'numero_p'=>$_POST['numero_p'],
+				'rue_p'=>$_POST['rue_p'],
+				'CP_p'=>$_POST['CP_p'],
+				'ville_p'=>$_POST['ville_p'],
+				'pays_p'=>$_POST['pays_p'],
+				'rib_p'=>$_POST['rib_p'],
+				'mdp_p'=>hash('sha256',$_POST['mdp_p']),
+				'question'=>hash('sha256',$_POST['question']),
+				'reponse'=>hash('sha256',$_POST['reponse'])
+				);
+			$where= array("idp"=>$_GET['idp']);
+			$unControleur->update($tab,$where);
+			header("location: index.php?page=3");
+		}else{
+            echo 'Critères de nom, prenom ou mot de passe non respecté';
+        }
 	}
 }
 	$unControleur->setTable("proprietaire");

@@ -1,35 +1,63 @@
 body {
-  padding-top: 100px;
-
+  padding-top: 110px;
+  background-color:white;
+  background-image: url("queyras_soleil.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.p1 {
-
-font-size: 15px;
+h2{
+  color: white;
+  text-align: center; 
 }
 
-.title1 {
+.presentation {
+  color: white;
+}
 
-  color: #FF6347;
-  font-size:40px;
+.texto {
+  font-family: 'rapscallionregular'; 
+  color: white;
+  font-size: 30px;
+}
 
+.tete
+{
+  text-align: center;
 }
 
 .logo {
-
   font-size: 25px;
   font-family: Brush Script MT;
+  text-align: start;
 }
 
 
-.unecarte {
-
-  background-color: #FF6347;
-
+footer{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding-top:50px;
+  height:50px;
 }
 
-.button1 {
+@font-face{ 
+  font-family: 'drawveticamini';
+  src: url('/web_fonts/drawveticamini_medium_macroman/DrawveticaMini-webfont.eot');
+  src: url('DrawveticaMini-webfont.eot?iefix') format('eot'),
+       url('/web_fonts/drawveticamini_medium_macroman/DrawveticaMini-webfont.woff') format('woff'),
+       url('/web_fonts/drawveticamini_medium_macroman/DrawveticaMini-webfont.ttf') format('truetype'),
+       url('/web_fonts/drawveticamini_medium_macroman/DrawveticaMini-webfont.svg') format('svg');
+}
 
-  padding-right: 5px;
+.form-inline{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+table{
+  border-radius: 14px;
 }

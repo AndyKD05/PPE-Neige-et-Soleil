@@ -1,9 +1,9 @@
-<h2>Gestion des contrats de mandat locatif</h2>
+
 <?php
 	$unControleur->setTable("reservation");
 	$lesReservations = $unControleur->selectAll();
 
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {
 	$unControleur->setTable("contrat_location");
 	$leCDL= null;
@@ -21,6 +21,12 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			case "edit" :
 			$where = array('idcl'=>$idcl);
 			$leCDL=$unControleur->selectWhere($where);
+			break;
+			case "imprimer" :
+			$where = array('idcl'=>$idcl);
+			$unControleur->setTable("viewReservations");
+			$leCDL=$unControleur->selectWhere($where);
+			require_once("gestion_imprimer.php");
 			break;
 		}
 	}

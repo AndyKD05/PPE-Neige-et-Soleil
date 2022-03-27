@@ -1,11 +1,11 @@
-<h2>Gestion des contrats de mandat locatif</h2>
+
 <?php
 	$unControleur->setTable("proprietaire");
 	$lesProprietaires = $unControleur->selectAll();
 	$unControleur->setTable("habitation");
 	$lesHabitations = $unControleur->selectAll();
 
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {
 	$unControleur->setTable("contrat_mandat_locatif");
 	$leCML= null;
@@ -33,7 +33,6 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'date_debut_cml'=>$_POST['date_debut_cml'],
 			'date_fin_cml'=>$_POST['date_fin_cml'],
 			'etat_contrat'=>$_POST['etat_contrat'],
-			'idp'=>$_POST['idp'],
 			'idh'=>$_POST['idh']
 		);
 		$unControleur->insert($tab);
@@ -44,7 +43,6 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'date_debut_cml'=>$_POST['date_debut_cml'],
 			'date_fin_cml'=>$_POST['date_fin_cml'],
 			'etat_contrat'=>$_POST['etat_contrat'],
-			'idp'=>$_POST['idp'],
 			'idh'=>$_POST['idh']
 		);
 		$where= array("idcml"=>$_GET['idcml']);

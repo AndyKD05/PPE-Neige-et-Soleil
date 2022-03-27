@@ -1,6 +1,7 @@
-<h2>Gestion des offres</h2>
 <?php
-if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
+	$unControleur->setTable("proprietaire");
+	$lesProprietaires = $unControleur->selectAll();
+if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {
 	$unControleur->setTable("habitation");
 	$lhabitation= null;
@@ -21,7 +22,7 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			break;
 		}
 	}
-	require_once("vue/vue_insert_offre.php");
+	//require_once("vue/vue_insert_offre.php");
 	if(isset($_POST['Valider']))
 	{
 		$tab= array('numero_h'=>$_POST['numero_h'],
@@ -37,7 +38,8 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'distance_piste_h'=>$_POST['distance_piste_h'],
 			'exposition_h'=>$_POST['exposition_h'],
 			'cave_h'=>$_POST['cave_h'],
-			'local_a_ski_h'=>$_POST['local_a_ski_h']
+			'local_a_ski_h'=>$_POST['local_a_ski_h'],
+			'idp'=>$_POST['idp']
 		);
 		$unControleur->insert($tab);
 	}
@@ -56,7 +58,8 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			'distance_piste_h'=>$_POST['distance_piste_h'],
 			'exposition_h'=>$_POST['exposition_h'],
 			'cave_h'=>$_POST['cave_h'],
-			'local_a_ski_h'=>$_POST['local_a_ski_h']
+			'local_a_ski_h'=>$_POST['local_a_ski_h'],
+			'idp'=>$_POST['idp']
 		);
 		$where= array("idh"=>$_GET['idh']
 	);
@@ -81,7 +84,8 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="admin")
 			"distance_piste_h",
 			"exposition_h",
 			"cave_h",
-			"local_a_ski_h"
+			"local_a_ski_h",
+			'idp'
 		);
 		$lesHabitations = $unControleur->selectSearch($tab,$mot);
 	}else

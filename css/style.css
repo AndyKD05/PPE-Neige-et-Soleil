@@ -1,17 +1,5 @@
-@font-face {
-    font-family: 'rapscallionregular';
-    src: url('police/RAPSCALL-webfont.eot');
-    src: url('police/RAPSCALL-webfont.eot?#iefix') format('embedded-opentype'),
-         url('police/RAPSCALL-webfont.woff2') format('woff2'),
-         url('police/RAPSCALL-webfont.woff') format('woff'),
-         url('police/RAPSCALL-webfont.ttf') format('truetype'),
-         url('police/RAPSCALL-webfont.svg#rapscallionregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
-  padding-top: 250px;
+  padding-top: 110px;
 background-color:white;
 background-image: url("queyras_soleil.jpg");
 background-attachment: fixed;
@@ -47,4 +35,14 @@ background-size: cover;
   font-size: 25px;
   font-family: Brush Script MT;
   text-align: start;
+}
+
+
+
+footer{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding-top:50px;
+  height:50px;
 }
