@@ -57,7 +57,6 @@
 			
 			<?php
 
-
 			if(isset($_SESSION['email']))
 			{
 
@@ -195,6 +194,12 @@
 			<a href="index.php?page=19">
 				<input type="button" value="Propriétaire" class="btn btn-primary">
 			</a>';
+			
+			echo
+				'<li class="nav-item">
+					<a class="nav-link" href="index.php?page=2">Offres</a>
+				</li>';
+
 			if(isset($_POST['seConnecterEmp']))
 			{
 				$email= $_POST['email']."|emp";
@@ -259,6 +264,7 @@
 			}
 			switch ($page) {
 				case 0: require_once ("home.php"); break;
+				case 2: require_once ("gestion_offres.php"); break;
 				case 13: require_once ("gestion_forget_pass_prop.php"); break;
 				case 14: require_once ("gestion_forget_pass_cli.php"); break;
 				case 15: require_once ("vue/vue_connexion_emp.php"); break;

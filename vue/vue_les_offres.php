@@ -173,7 +173,7 @@ echo	"<td> Opérations </td>";
 <?php  
 foreach ($lesHabitations as $uneHabitation){
 	echo "<tr>";
-	if(($uneHabitation['idp']==$_SESSION['id'] and $_SESSION['role']=="prop") or $_SESSION['role']=="emp")
+	if(($uneHabitation['idp']==$_SESSION['id'] and $_SESSION['role']=="prop") or $_SESSION['role']=="emp" or !isset($_SESSION['email']))
 	{
 		if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 		{
