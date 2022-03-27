@@ -4,7 +4,7 @@ $pass = '/(?=\S{8,})(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])/';
 $nom = '/^[^@&"()!_$*€£`+=\/;?#]+$/';
 
 	$unControleur->setTable("proprietaire");
-	require_once("vue/vue_inscription_Proprietaire.php");
+	require_once("vue/vue_inscription_proprietaire.php");
 	if(isset($_POST['Inscrire']))
 	{
 		if(preg_match($pass, $_POST['mdp_p']) and preg_match($nom, $_POST['nom_p']) and preg_match($nom, $_POST['prenom_p'])){
