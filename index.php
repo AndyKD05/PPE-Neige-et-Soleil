@@ -57,6 +57,14 @@
 			
 			<?php
 
+			if(!isset($_SESSION['email']))
+			{
+				echo
+				'<li class="nav-item">
+					<a class="nav-link" href="index.php?page=2">Offres</a>
+				</li>';
+			}
+
 			if(isset($_SESSION['email']))
 			{
 
@@ -194,12 +202,12 @@
 			<a href="index.php?page=19">
 				<input type="button" value="Propriétaire" class="btn btn-primary">
 			</a>';
-			
+			/*
 			echo
 				'<li class="nav-item">
 					<a class="nav-link" href="index.php?page=2">Offres</a>
 				</li>';
-
+			*/
 			if(isset($_POST['seConnecterEmp']))
 			{
 				$email= $_POST['email']."|emp";
