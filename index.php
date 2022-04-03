@@ -63,6 +63,20 @@
 				'<li class="nav-item">
 					<a class="nav-link" href="index.php?page=2">Offres</a>
 				</li>';
+
+				echo
+				'<div class="dropdown">
+					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Log In</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Client</a></li>
+							<li><a href="#">Employe</a></li>
+							<li><a href="#">Propriétaire</a></li>
+						</ul>
+					</li>
+				 </div>
+				';
+				
+				
 			}
 
 			if(isset($_SESSION['email']))

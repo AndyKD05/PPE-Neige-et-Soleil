@@ -42,6 +42,14 @@
             </li>
             
 			<?php
+
+			if(!isset($_SESSION['email']))
+			{
+				echo
+				'<li class="nav-item">
+					<a class="nav-link" href="index.php?page=2">Offres</a>
+				</li>';
+			}
 			
 			if(isset($_SESSION['email']))
 			{
