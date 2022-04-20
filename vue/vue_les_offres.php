@@ -262,7 +262,7 @@ foreach ($lesHabitations as $uneHabitation){
 							<div class='card-text'>
 								<p class='card-text' align='justify'>
 									<a>Adresse :</a> ".$uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']." </br>
-									<a>Superficie :</a> ".$uneHabitation['superficie_h']." M°2</br>
+									<a>Superficie :</a> ".$uneHabitation['superficie_h']." m°2</br>
 									<a>Capacité :</a> ".$uneHabitation['capacite_acceuil_h']." personne(s), </br>
 									<!--
 									<a>Surface habitable :</a> ".$uneHabitation['surface_habitable_h'].",</br>
@@ -278,6 +278,9 @@ foreach ($lesHabitations as $uneHabitation){
 						</div>
 						<div class='unecarte card-footer'>
 					<!--      <small class='text-muted'>&#9733; &#9733; &#9733; &#9733; &#9733;</small> -->
+							<p align='left'>
+								<a class='btn btn-light' href='#'>Réserver</a>
+							</p>
 						</div>
 					</div>
 				</div>
