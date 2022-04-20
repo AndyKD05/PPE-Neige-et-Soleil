@@ -152,6 +152,21 @@
 <form method="post" class="form-inline">
 	<table class="table table-striped table-dark">
 		<tr>
+			<td>
+				<a class="text-primary" href="index.php?page=19">
+					<input type="button" value="Inscription Propriétaire" class="btn btn-primary-outline">
+				</a>
+			</td>
+			<td></td>
+			<td>
+				<a href="index.php?page=18">
+					<input type="button" value="Inscription Client" class="btn btn-primary-outline">
+				</a>
+			</td>
+			<td></td>
+			
+		</tr>
+		<tr>
 				<td>Nom</td>
 				<td><input type="text" name="nom_c" >
 				</td>
@@ -205,7 +220,9 @@
 		</tr>
 		<tr>
 				<td><input type="reset" name="Annuler" value="Annuler" class="btn btn-danger"></td>
+				<td></td>
 				<td><input type="submit" name ="Inscrire" value="S'inscrire" class="btn btn-primary"></td>
+				<td></td>
 		</tr>		
 	</table>
 </form>

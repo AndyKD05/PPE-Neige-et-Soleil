@@ -22,7 +22,7 @@
     <link href="/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="/css/style2.css"> 
+    <link rel="stylesheet" type="text/css" href="/css/style.css"> 
 
   </head>
 
@@ -32,7 +32,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="logo navbar-brand" href="index.html">Neige et soleil</a>
+        <a class="logo navbar-brand" href="index.php">Neige et soleil</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,7 @@
             
             <li class="nav-item active">
 
-                <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home</a>
 
             </li>
 			<!--
@@ -65,16 +65,14 @@
 				</li>';
 
 				echo
-				'<div class="dropdown">
-					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Log In</button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Client</a></li>
-							<li><a href="#">Employe</a></li>
-							<li><a href="#">Propriétaire</a></li>
-						</ul>
-					</li>
-				 </div>
-				';
+				'<li class="nav-item">
+					<a class="nav-link" href="index.php?page=18">Sign In</a>
+				</li>';
+
+				echo
+				'<li class="nav-item">
+					<a class="btn btn-primary" href="index.php?page=17">Sign Up</a>
+				</li>';
 				
 				
 			}
@@ -182,40 +180,24 @@
               <strong class="presentation">Bienvenue sur Neige et Soleil</strong>
             <hr width="50%" color="#FFA07A" />
             </h1>
-
+			</div>
+			<div class="col-lg-8 mx-auto">
+				<p class="texto text-faded mb-5">Nous sommes une entreprise de prestation de services qui met en locations des appartements. Partez à la montagne avec nous !</p>
+				<a class="btn btn-primary btn-xl" href="index3.html">Apprenez-en plus sur nous !</a>
+			</div>
           </div>
         </div>
       </div>
 
     </header>
-
+		
 	<center>
 
 		<?php
 		require_once("home.php");
 		if (! isset($_SESSION['email']))
 		{
-			echo'
-			<h2><strong class="presentation"> Connexion </strong> </h2>
-			<br />
-			<a href="index.php?page=15">
-				<input type="button" value="Employé" class="btn btn-primary">
-			</a>
-			<a href="index.php?page=16">
-				<input type="button" value="Propriétaire" class="btn btn-primary">
-			</a>
-			<a href="index.php?page=17">
-				<input type="button" value="Client" class="btn btn-primary">
-			</a>
-			<br /><br />
-			<h2><strong class="presentation"> Inscription </strong> </h2>
-			<br />
-			<a href="index.php?page=18">
-				<input type="button" value="Client" class="btn btn-primary">
-			</a>
-			<a href="index.php?page=19">
-				<input type="button" value="Propriétaire" class="btn btn-primary">
-			</a>';
+			
 			/*
 			echo
 				'<li class="nav-item">
@@ -259,7 +241,6 @@
 				}
 			}
 			
-			
 			if(isset($_POST['seConnecterCli']))
 			{
 				$email= $_POST['email']."|cli";
@@ -278,6 +259,7 @@
 					echo "<br/> Vérifiez vos identifiants";
 				}
 			}
+			
 			if(isset($_GET['page']))
 			{
 				$page = $_GET['page'];
@@ -286,7 +268,9 @@
 			}
 			switch ($page) {
 				case 0: require_once ("home.php"); break;
+				case 1: require_once ("sign_in.php"); break;
 				case 2: require_once ("gestion_offres.php"); break;
+				case 3: require_once ("sign_up.php"); break;
 				case 13: require_once ("gestion_forget_pass_prop.php"); break;
 				case 14: require_once ("gestion_forget_pass_cli.php"); break;
 				case 15: require_once ("vue/vue_connexion_emp.php"); break;
@@ -329,12 +313,10 @@
 		?>
 	</center>
 <!--
-<footer class="py-5">
-<div class="container">
-  <p class="m-1 text-center text-white">Copyright &copy;Félix Millon & Théo Chesnais & Andy Kadiambu</p>
-</div>
+<footer class="py-2 fixed-bottom">
+		<p class="m-1 text-center text-white">Copyright &copy; Félix Millon & Théo Chesnais & Andy Kadiambu</p>
 </footer>
 	-->
-  </body>
+</body>
 
 </html>

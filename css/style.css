@@ -10,7 +10,9 @@ background-size: cover;
 
 
 .presentation {
-  color: white;
+  color: rgb(255, 254, 253);
+  text-align: center;
+  height: 200px;
 }
 
 .texto {
@@ -35,6 +37,10 @@ background-size: cover;
   font-size: 25px;
   font-family: Brush Script MT;
   text-align: start;
+}
+
+.card{
+  color: antiquewhite;
 }
 
 

@@ -17,6 +17,8 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="/CSS/style.css"> 
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
   </head>
 
@@ -24,9 +26,9 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
       <div class="container">
-        <a class="logo navbar-brand" href="index.html">Neige et soleil</a>
+        <a class="logo navbar-brand" href="index.php">Neige et soleil</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -36,7 +38,7 @@
             
             <li class="nav-item active">
 
-                <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home</a>
 
             </li>
             
@@ -47,6 +49,16 @@
 				echo
 				'<li class="nav-item">
 					<a class="nav-link" href="index.php?page=2">Offres</a>
+				</li>';
+
+				echo
+				'<li class="nav-item">
+					<a class="nav-link" href="sign_in.php">Sign In</a>
+				</li>';
+
+				echo
+				'<li class="nav-item">
+					<a class="btn btn-primary" href="sign_up.php">Sign Up</a>
 				</li>';
 			}
 
@@ -145,6 +157,17 @@
       </div>
     </nav>
 
+	<div class='carousel-item active'>
+		<div class="container">
+			<h3> <strong class="presentation">Liste des habitations</strong> </h3>
+			</br>
+			<form method="post" class="form-inline">
+			<strong class="presentation">Mot de recherche: </strong> <input type="text" name="mot">
+				<input type="submit" name="Rechercher" value="Rechercher" class="btn btn-secondary">
+			</form>
+		</div>
+	</div>
+
 <h3> <strong class="presentation">Liste des habitations</strong> </h3>
 </br>
 <form method="post" class="form-inline">
@@ -201,6 +224,64 @@ foreach ($lesHabitations as $uneHabitation){
 		<td>".$uneHabitation['local_a_ski_h']."</td>
 		<td>".$uneHabitation['idp']."</td>
 		";
+
+		echo "
+				<div class='col-lg-4 col-md-6 mb-4'>
+					<div class='card h-100 bg-dark'>
+						<div id='carouselExampleIndicators' class='carousel slide' data-bs-ride='carousel'>
+						<div class='carousel-indicators'>
+							<button type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' class='active' aria-current='true' aria-label='Slide 1'></button>
+							<button type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2'></button>
+							<button type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3'></button>
+						</div>
+						<div class='carousel-inner'>
+							<div class='carousel-item active'>
+								<img src='css/queyras_soleil.jpg' class='card-img-top' width='100' height='250'>
+							</div>
+							<div class='carousel-item'>
+								<img src='css/queyras_ete.jpg' class='card-img-top' width='100' height='250'>
+							</div>
+							<div class='carousel-item'>
+								<img src='css/spot_queyras.jpg' class='card-img-top' width='100' height='250'>
+							</div>
+						</div>
+						<button class='carousel-control-prev' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev'>
+							<span class='carousel-control-prev-icon' aria-hidden='true'></span>
+							<span class='visually-hidden'>Previous</span>
+						</button>
+						<button class='carousel-control-next' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next'>
+							<span class='carousel-control-next-icon' aria-hidden='true'></span>
+							<span class='visually-hidden'>Next</span>
+						</button>
+					</div>
+						
+						<div class='card-body'>
+							<h4 class='card-title'>
+							<a>".$uneHabitation['type_h']."</a>
+							</h4>
+							<div class='card-text'>
+								<p class='card-text' align='justify'>
+									<a>Adresse :</a> ".$uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']." </br>
+									<a>Superficie :</a> ".$uneHabitation['superficie_h']." M°2</br>
+									<a>Capacité :</a> ".$uneHabitation['capacite_acceuil_h']." personne(s), </br>
+									<!--
+									<a>Surface habitable :</a> ".$uneHabitation['surface_habitable_h'].",</br>
+									<a>Superficie :</a> ".$uneHabitation['surface_balcon_h'].",</br> -->
+									<a>Distance des pistes :</a> ".$uneHabitation['distance_piste_h'].",</br>
+									<!--
+									<a>Exposition :</a> ".$uneHabitation['exposition_h'].",</br>
+									<a>Cave :</a> ".$uneHabitation['cave_h'].", </br>
+									<a>Local a ski</a> : ".$uneHabitation['local_a_ski_h']."
+									-->
+								</p>
+							</div>
+						</div>
+						<div class='unecarte card-footer'>
+					<!--      <small class='text-muted'>&#9733; &#9733; &#9733; &#9733; &#9733;</small> -->
+						</div>
+					</div>
+				</div>
+			";
 	}
 	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 	{
@@ -215,6 +296,7 @@ foreach ($lesHabitations as $uneHabitation){
 }
 ?>
 </table>
+
 
 <!--
 <footer class="py-5">
