@@ -34,7 +34,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav ml-auto justify-content-end">
             
             <li class="nav-item active">
 
@@ -263,13 +263,13 @@ foreach ($lesHabitations as $uneHabitation){
 								<p class='card-text' align='justify'>
 									<a>Adresse :</a> ".$uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']." </br>
 									<a>Superficie :</a> ".$uneHabitation['superficie_h']." m°2</br>
-									<a>Capacité :</a> ".$uneHabitation['capacite_acceuil_h']." personne(s), </br>
+									<a>Capacité :</a> ".$uneHabitation['capacite_acceuil_h']." personne(s) </br>
 									<!--
-									<a>Surface habitable :</a> ".$uneHabitation['surface_habitable_h'].",</br>
+									<a>Surface habitable :</a> ".$uneHabitation['surface_habitable_h']."</br>
 									<a>Superficie :</a> ".$uneHabitation['surface_balcon_h'].",</br> -->
-									<a>Distance des pistes :</a> ".$uneHabitation['distance_piste_h'].",</br>
+									<a>Distance des pistes :</a> ".$uneHabitation['distance_piste_h']."</br>
 									<!--
-									<a>Exposition :</a> ".$uneHabitation['exposition_h'].",</br>
+									<a>Exposition :</a> ".$uneHabitation['exposition_h']."</br>
 									<a>Cave :</a> ".$uneHabitation['cave_h'].", </br>
 									<a>Local a ski</a> : ".$uneHabitation['local_a_ski_h']."
 									-->

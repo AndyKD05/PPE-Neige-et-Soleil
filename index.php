@@ -183,13 +183,14 @@
 			</div>
 			<div class="col-lg-8 mx-auto">
 				<p class="texto text-faded mb-5">Nous sommes une entreprise de prestation de services qui met en locations des appartements. Partez à la montagne avec nous !</p>
-				<a class="btn btn-primary btn-xl" href="index3.html">Apprenez-en plus sur nous !</a>
+				<a class="btn btn-dark btn-xl" href="#">Apprenez-en plus sur nous !</a>
 			</div>
           </div>
         </div>
       </div>
 
     </header>
+		</br>
 		
 	<center>
 
