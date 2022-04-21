@@ -26,7 +26,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="logo navbar-brand" href="index.html">Neige et soleil</a>
+        <a class="logo navbar-brand" href="index.php">Neige et soleil</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -47,6 +47,11 @@
               echo
               '<li class="nav-item">
                 <a class="nav-link" href="index.php?page=2">Offres</a>
+              </li>';
+
+              echo
+              '<li class="nav-item">
+                <a class="nav-link" href="index.php?page=18">Sign In</a>
               </li>';
             }
             
@@ -148,27 +153,28 @@
 <br /><br /><br />
 
 <h2><strong class="presentation"> Connexion client </strong> </h2>
+
+<form method="post" class="form-inline">
 <table class="table table-striped table-dark">
-  <tr>
-		<td>
+  <thead class="thead-dark">
+  <tr class="table-info">
+		<th scope="col">
       <a href="index.php?page=15">
           <input type="button" value="Connexion Employé" class="btn btn-primary-outline">
       </a>
-    </td>
-		<td>
+    </th>
+		<th scope="col">
       <a href="index.php?page=17">
           <input type="button" value="Connexion Client" class="btn btn-primary-outline">
       </a>
-    </td>
-    <td>
+    </th>
+    <th scope="col">
       <a href="index.php?page=16">
           <input type="button" value="Connexion Propriétaire" class="btn btn-primary-outline">
       </a>
-    </td>
+    </th>
 	</tr>
-</table>
-<form method="post" class="form-inline">
-<table class="table table-striped table-dark">
+	</thead>
 	<tr>
 		<td>Email</td>
 		<td><input type="text" name="email"></td>

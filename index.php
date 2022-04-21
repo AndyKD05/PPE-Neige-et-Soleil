@@ -80,81 +80,81 @@
 			if(isset($_SESSION['email']))
 			{
 
-			if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
-			{
+				if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
+				{
+
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=2">Offres</a>
+					</li>';
+				}
+				if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
+				{
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=4">Client</a>
+					</li>';
+
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=11">Tarifs</a>
+					</li>';
+				}
+				if($_SESSION['role']=="emp")
+				{
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=5">Employé</a>
+					</li>';
+				}
 
 				echo
 				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=2">Offres</a>
+					<a class="nav-link" href="index.php?page=6">Saisons</a>
 				</li>';
-			}
-			if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
-			{
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=4">Client</a>
-				</li>';
+				if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
+				{
+
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=7">CML</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=8">Exception</a>
+					</li>';
+				}
+				if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
+				{
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=10">Location</a>
+					</li>';
+				}
+				if($_SESSION['role']=="cli")
+				{
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=9">Réservation</a>
+					</li>';
+				}
+				if($_SESSION['role']=="emp")
+				{
+
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=11">Tarifs</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=12">Réservation</a>
+					</li>';
+				}
 
 				echo
 				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=11">Tarifs</a>
+					<a class="nav-link" href="index.php?page=20">Déconnexion</a>
 				</li>';
-			}
-			if($_SESSION['role']=="emp")
-			{
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=5">Employé</a>
-				</li>';
-			}
-
-			echo
-			'<li class="nav-item">
-                <a class="nav-link" href="index.php?page=6">Saisons</a>
-            </li>';
-			if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
-			{
-
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=7">CML</a>
-				</li>';
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=8">Exception</a>
-				</li>';
-			}
-			if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
-			{
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=10">Location</a>
-				</li>';
-			}
-			if($_SESSION['role']=="cli")
-			{
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=9">Réservation</a>
-				</li>';
-			}
-			if($_SESSION['role']=="emp")
-			{
-
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=11">Tarifs</a>
-				</li>';
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=12">Réservation</a>
-				</li>';
-			}
-
-			echo
-			'<li class="nav-item">
-                <a class="nav-link" href="index.php?page=20">Déconnexion</a>
-            </li>';
 
 				if(isset($_GET['page']))
 				{
@@ -162,7 +162,7 @@
 				}else{
 					$page = 0;
 				}
-				
+					
 			}
 			?>
             
@@ -313,11 +313,9 @@
 		}
 		?>
 	</center>
-<!--
-<footer class="py-2 fixed-bottom">
+	<footer class="py-2 fixed-bottom">
 		<p class="m-1 text-center text-white">Copyright &copy; Félix Millon & Théo Chesnais & Andy Kadiambu</p>
-</footer>
-	-->
+	</footer>
 </body>
 
 </html>

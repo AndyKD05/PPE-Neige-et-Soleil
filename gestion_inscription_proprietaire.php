@@ -1,4 +1,4 @@
-<h2>Inscription Proprietaire</h2>
+<h3>Inscription Proprietaire</h3>
 <?php
 $pass = '/(?=\S{8,})(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])/';
 $nom = '/^[^@&"()!_$*€£`+=\/;?#]+$/';

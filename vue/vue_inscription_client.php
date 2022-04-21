@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="logo navbar-brand" href="index.html">Neige et soleil</a>
+        <a class="logo navbar-brand" href="index.php">Neige et soleil</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,7 @@
             
             <li class="nav-item active">
 
-                <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php">Home</a>
 
             </li>
             
@@ -48,6 +48,11 @@
 				echo
 				'<li class="nav-item">
 					<a class="nav-link" href="index.php?page=2">Offres</a>
+				</li>';
+
+				echo
+				'<li class="nav-item">
+					<a class="btn btn-primary" href="index.php?page=17">Sign Up</a>
 				</li>';
 			}
 			
@@ -151,21 +156,22 @@
 
 <form method="post" class="form-inline">
 	<table class="table table-striped table-dark">
-		<tr>
-			<td>
-				<a class="text-primary" href="index.php?page=19">
-					<input type="button" value="Inscription Propriétaire" class="btn btn-primary-outline">
-				</a>
-			</td>
-			<td></td>
-			<td>
-				<a href="index.php?page=18">
-					<input type="button" value="Inscription Client" class="btn btn-primary-outline">
-				</a>
-			</td>
-			<td></td>
-			
-		</tr>
+		<thead class="thead-dark">
+			<tr class="table-info">
+				<th scope="col"></th>
+				<th scope="col">
+					<a href="index.php?page=19">
+						<input id="inc" type="button" value="Inscription Propriétaire" class="btn btn-info-outline">
+					</a>
+				</th>
+				<th scope="col"></th>
+				<th scope="col">
+					<a href="index.php?page=18">
+						<input id="inc" type="button" value="Inscription Client" class="btn btn-info-outline">
+					</a>
+				</th>
+			</tr>
+		</thead>
 		<tr>
 				<td>Nom</td>
 				<td><input type="text" name="nom_c" >
@@ -221,7 +227,7 @@
 		<tr>
 				<td><input type="reset" name="Annuler" value="Annuler" class="btn btn-danger"></td>
 				<td></td>
-				<td><input type="submit" name ="Inscrire" value="S'inscrire" class="btn btn-primary"></td>
+				<td><input type="submit" name ="Inscrire" value="S'inscrire" class="btn btn-light"></td>
 				<td></td>
 		</tr>		
 	</table>
