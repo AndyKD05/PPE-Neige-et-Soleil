@@ -1,3 +1,4 @@
+
 <?php
 	$unControleur->setTable("proprietaire");
 	$lesProprietaires = $unControleur->selectAll();
@@ -22,7 +23,7 @@ if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 			break;
 		}
 	}
-	//require_once("vue/vue_insert_offre.php");
+	require_once("vue/vue_insert_offre.php");
 	if(isset($_POST['Valider']))
 	{
 		$tab= array('numero_h'=>$_POST['numero_h'],

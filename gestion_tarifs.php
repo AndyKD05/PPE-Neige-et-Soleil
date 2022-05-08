@@ -1,4 +1,4 @@
-
+<h2>Gestion des tarifs</h2>
 <?php
 	$unControleur->setTable("saison");
 	$lesSaisons = $unControleur->selectAll();

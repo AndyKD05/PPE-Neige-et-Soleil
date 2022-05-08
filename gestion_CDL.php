@@ -1,4 +1,4 @@
-
+<h2>Gestion des contrats de location</h2>
 <?php
 	$unControleur->setTable("reservation");
 	$lesReservations = $unControleur->selectAll();

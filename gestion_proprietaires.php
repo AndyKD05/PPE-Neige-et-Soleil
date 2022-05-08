@@ -1,4 +1,4 @@
-
+<h2>Gestion des proprietaires</h2>
 <?php
 $pass = '/(?=\S{8,})(?=\S*[A-Z])(?=\S*[\d])(?=\S*[\W])/';
 $nom = '/^[^@&"()!_$*€£`+=\/;?#]+$/';

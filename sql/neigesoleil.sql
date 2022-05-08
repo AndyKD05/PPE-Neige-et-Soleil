@@ -46,7 +46,7 @@ create table habitation
 	superficie_h decimal(6,2) not null,
 	type_h enum('maison','appartement','chalet','villa') not null,
 	capacite_acceuil_h int(2) not null,
-	surface_habitable_h decimal(6,2) not null,   
+	surface_habitable_h decimal(6,2) not null,
 	surface_balcon_h decimal(6,2),
 	distance_piste_h decimal(3,1),
 	exposition_h varchar(10) not null,
@@ -59,7 +59,7 @@ create table habitation
 	on delete cascade
 )engine=innodb;
 
-create table habitation_dispo
+create or replace table habitation_dispo_total
 (
 	idh int(5) not null,
 	numero_h varchar(10) not null,
@@ -77,6 +77,7 @@ create table habitation_dispo
 	cave_h enum('non','oui') not null,
 	local_a_ski_h enum('non','oui') not null,
 	idp int(5) not null,
+	prix_total decimal(10,2) not null,
 	primary key (idh),
 	foreign key(idp) references proprietaire(idp)
 	on update cascade
@@ -99,15 +100,15 @@ create table contrat_mandat_locatif
 
 create table archive_contrat_mandat_locatif
 ( 
-	idcml int(5) not null,
+	idcml int(5) not null auto_increment,
 	descriptif varchar(255),
 	date_debut_cml date not null,
 	date_fin_cml date not null,
 	etat_contrat enum('actif','inactif') not null,
 	idh int(5) not null,
-	date_suppression date default(curdate()),
+	date_suppression datetime,
 	idp int(5) not null,
-	primary key (idcml),
+	primary key (idcml,date_suppression),
 	foreign key (idh) references habitation(idh)
 	on update cascade
 	on delete cascade
@@ -234,10 +235,10 @@ create table archive_contrat_location
 	prix_total decimal(10,2) not null,
 	idr int(5) not null,
 	etat_des_lieux varchar(255),
-	date_suppression date default(curdate()),
+	date_suppression datetime,
 	idclient int(3),
 	idhabitation int(3),
-	primary key (idcl),
+	primary key (idcl,date_suppression),
 	foreign key (idr) references reservation(idr)
 	on update cascade
 	on delete cascade
@@ -274,6 +275,7 @@ create table user
 	id varchar(6) not null,
 	email varchar(90) not null,
 	mdp varchar(255) not null,
+	role boolean,
 	primary key (id)
 )engine=innodb;
 
@@ -289,7 +291,11 @@ create table indispo
 )engine=innodb;
 
 
+
+
 /*triggers*/
+
+
 
 drop trigger if exists client_after_insert;
 delimiter // 
@@ -298,7 +304,7 @@ after insert on client
 for each row
 begin
 
-insert into user values (concat(new.idc,'|cli'),concat(new.mail_c,'|cli'),new.mdp_c);
+insert into user values (concat(new.idc,'|cli'),concat(new.mail_c,'|cli'),new.mdp_c,0);
 
 end //
 delimiter ;
@@ -331,7 +337,7 @@ after insert on employes
 for each row
 begin
 
-insert into user values (concat(new.idemp,'|emp'),concat(new.mail_emp,'|emp'),new.mdp_emp);
+insert into user values (concat(new.idemp,'|emp'),concat(new.mail_emp,'|emp'),new.mdp_emp,0);
 
 end //
 delimiter ;
@@ -364,7 +370,7 @@ after insert on proprietaire
 for each row
 begin
 
-insert into user values (concat(new.idp,'|prop'),concat(new.mail_p,'|prop'),new.mdp_p);
+insert into user values (concat(new.idp,'|prop'),concat(new.mail_p,'|prop'),new.mdp_p,0);
 
 end //
 delimiter ;
@@ -505,7 +511,7 @@ create trigger archive_CDL_before_delete
 before delete on contrat_location
 for each row
 begin
-insert into archive_contrat_location values(old.idcl,old.prix_total,old.idr,old.etat_des_lieux,curdate(),(select idc from reservation r where old.idr=r.idr),(select idh from reservation r where old.idr=r.idr));
+insert into archive_contrat_location values(old.idcl,old.prix_total,old.idr,old.etat_des_lieux,sysdate(),(select idc from reservation r where old.idr=r.idr),(select idh from reservation r where old.idr=r.idr));
 end //
 delimiter ;
 
@@ -522,7 +528,7 @@ insert into archive_contrat_mandat_locatif values(
 	old.date_fin_cml,
 	'inactif',
 	old.idh,
-	curdate(),
+	sysdate(),
 	(select idp from habitation where idh=old.idh)
 	);
 end //
@@ -561,9 +567,9 @@ end //
 delimiter ;
 
 /*insert*/
-insert into proprietaire values (null,"martin","jean","0123456789","jm@gmail.com","1975-05-03","35","rue de l'eglise","75015","Paris","France","1234567891122axxezgz","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','b4057e6d1f69fa65d0f6c88dc738d7a7872e3b2742b6fb7c6e582b1b51a3a471');
-insert into proprietaire values (null,"Bernard","Jacques","0623456789","bj@gmail.com","1970-07-09","45","rue jean moulin","64015","Grenoble","France","1456789891122axxesetsz","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','b4057e6d1f69fa65d0f6c88dc738d7a7872e3b2742b6fb7c6e582b1b51a3a471');
-insert into proprietaire values (null,"Thomas","Henry","0198653214","th@gmail.com","1985-08-25","21","rue de jeanne d'arc","52014","Tour","France","1234577891122azgsefz","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','88464f3fe88e62ddd273f5d5a67a71d413d22ac9c24254d0f75667d3c1da8bc6');
+insert into proprietaire values (null,"martin","jean","0123456789","jm@gmail.com","1975-05-03","35","rue de l'eglise","75015","Paris","France","1234567891122axxezgz","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','b4057e6d1f69fa65d0f6c88dc738d7a7872e3b2742b6fb7c6e582b1b51a3a471');
+insert into proprietaire values (null,"Bernard","Jacques","0623456789","bj@gmail.com","1970-07-09","45","rue jean moulin","64015","Grenoble","France","1456789891122axxesetsz","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','b4057e6d1f69fa65d0f6c88dc738d7a7872e3b2742b6fb7c6e582b1b51a3a471');
+insert into proprietaire values (null,"Thomas","Henry","0198653214","th@gmail.com","1985-08-25","21","rue de jeanne darc","52014","Tour","France","1234577891122azgsefz","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','88464f3fe88e62ddd273f5d5a67a71d413d22ac9c24254d0f75667d3c1da8bc6');
 insert into saison values ("haute","2021-12-20","2022-01-28",null);
 insert into saison values ("moyenne","2021-11-01","2021-12-19",null);
 insert into saison values ("basse","2021-11-01","2021-12-19",null);
@@ -596,13 +602,13 @@ insert into tarification values (80.00,"4","basse","2021-01-01");
 insert into tarification values (800.00,"5","haute","2021-01-01");
 insert into tarification values (500.00,"5","moyenne","2021-01-01");
 insert into tarification values (350.00,"5","basse","2021-01-01");
-insert into employes values (null,"Millon","felix","0198765432","f@gmail.com","1992-09-05","25","rue des poirier","75015","Paris","2005-05-04","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",null);
-insert into employes values (null,"Dupont","Maurice","0198765432","DM@gmail.com","1985-05-12","12","rue des rosier","75020","Paris","2005-05-04","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",null);
-insert into employes values (null,"Durand","Jean","0198765433","DJ@gmail.com","1990-02-22","14","rue des chenes","65102","Marseille","2008-09-01","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",null);
-insert into employes values (null,"Fevrier","Alice","0198765431","FA@gmail.com","1970-08-07","25","rue des platanes","10521","Igny","2005-10-22","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",null);
-insert into client values (null,"Mars","Jacqueline","0678451236","j.mars@gmail.com","1995-12-04","2","rue de la république","92600","Asnieres","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','b4057e6d1f69fa65d0f6c88dc738d7a7872e3b2742b6fb7c6e582b1b51a3a471');
-insert into client values (null,"Juin","Patrick","0678451239","p.juin@gmail.com","1999-09-12","5","rue des arbres","80102","Juvisy","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','90a6be9243bae58034825e81b937519181a0e98441739f05674a9dcd246f87fb');
-insert into client values (null,"Novembre","Marie","0678451233","m.novembre@gmail.com","1970-06-08","12","rue des pagaies","77204","Orléan","3bc94029a31c49a3ae09e9ec75c6afaf06ba8ec1375b15f9eaaf7f528d82bac1",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','88464f3fe88e62ddd273f5d5a67a71d413d22ac9c24254d0f75667d3c1da8bc6');
+insert into employes values (null,"Millon","felix","0198765432","f@gmail.com","1992-09-05","25","rue des poirier","75015","Paris","2005-05-04","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",null);
+insert into employes values (null,"Dupont","Maurice","0198765432","DM@gmail.com","1985-05-12","12","rue des rosier","75020","Paris","2005-05-04","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",null);
+insert into employes values (null,"Durand","Jean","0198765433","DJ@gmail.com","1990-02-22","14","rue des chenes","65102","Marseille","2008-09-01","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",null);
+insert into employes values (null,"Fevrier","Alice","0198765431","FA@gmail.com","1970-08-07","25","rue des platanes","10521","Igny","2005-10-22","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",null);
+insert into client values (null,"Mars","Jacqueline","0678451236","j.mars@gmail.com","1995-12-04","2","rue de la république","92600","Asnieres","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','b4057e6d1f69fa65d0f6c88dc738d7a7872e3b2742b6fb7c6e582b1b51a3a471');
+insert into client values (null,"Juin","Patrick","0678451239","p.juin@gmail.com","1999-09-12","5","rue des arbres","80102","Juvisy","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','90a6be9243bae58034825e81b937519181a0e98441739f05674a9dcd246f87fb');
+insert into client values (null,"Novembre","Marie","0678451233","m.novembre@gmail.com","1970-06-08","12","rue des pagaies","77204","Orléan","a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",'560d70119014c382cef46594d3cbc205159103d04a68825da90d7b50e7804100','88464f3fe88e62ddd273f5d5a67a71d413d22ac9c24254d0f75667d3c1da8bc6');
 insert into reservation values (null,1,"2021-09-22","2021-12-10","2021-12-17",'en attente',"1","1","basse","2022-12-12");
 insert into reservation values (null,2,"2021-07-21","2021-08-09","2021-08-16",'en attente',"1","1","basse","2022-12-12");
 insert into reservation values (null,5,"2021-06-20","2021-07-02","2021-07-19",'en attente',"3","3","basse","2022-12-12");
@@ -613,9 +619,21 @@ insert into contrat_location values (null,12000.00,"3","");
 insert into equipement values (null,"Four a micro-ondes","bon etat",1,"1");
 insert into equipement values (null,"Four a micro-ondes","neuf",1,"2");
 insert into equipement values (null,"Four a micro-ondes","correct",1,"5");
+insert into images values(null,"maison.png",null,1);
+insert into images values(null,"paysage1.png",null,1);
+insert into images values(null,"paysage1.png",null,1);
+insert into images values(null,"maison2.png",null,2);
+insert into images values(null,"queyras_ete.jpg",null,2);
+insert into images values(null,"queyras_soleil.jpg",null,2);
+insert into images values(null,"maison3.png",null,3);
+insert into images values(null,"maison4.png",null,4);
+insert into images values(null,"maison.png",null,5);
+insert into images values(null,"paysage1.png",null,5);
+insert into images values(null,"paysage1.png",null,5);
 
 /*EVENTS*/
-SET GLOBAL event_scheduler = 1;
+
+SET GLOBAL event_scheduler = ON;
 
 drop event if exists archivCML;
 create event archivCML
@@ -623,13 +641,15 @@ on SCHEDULE every 24 hour
 starts CURRENT_TIMESTAMP + interval 24 hour
 do delete from contrat_mandat_locatif where etat_contrat = 'inactif';
 
-
 drop event if exists archivContrat;
 create event archivContrat
 on SCHEDULE every 24 hour
 starts CURRENT_TIMESTAMP + interval 24 hour
 do delete from contrat_location where length(etat_des_lieux)!=0  and etat_des_lieux != null;
+
+
 /*PROCEDURES STOCKEES*/
+
 drop procedure if exists archivCML;
 DELIMITER //
 CREATE PROCEDURE archivCML()
@@ -651,15 +671,46 @@ DELIMITER //
 CREATE PROCEDURE selectdispo
 (IN debut date, IN fin date, IN nb_personne int)
 BEGIN
-delete from habitation_dispo;
-insert into habitation_dispo
-select * from habitation
-where idh not in (select idh from indispo 
-	where (fin between debut_indispo and fin_indispo) 
-	or (debut between debut_indispo and fin_indispo) 
-	or (debut<= debut_indispo and fin>=fin_indispo)) 
-;
-delete from habitation_dispo where capacite_acceuil_h<nb_personne;
+delete from habitation_dispo_total;
+if 'haute' in (select saison from saison where debut between debut_saison and fin_saison)
+then
+	insert into habitation_dispo_total
+	select h.*,datediff(fin,debut)*t.tarif from habitation h, tarification t, contrat_mandat_locatif c
+	where h.idh not in (select idh from indispo 
+		where (fin between debut_indispo and fin_indispo) 
+		or (debut between debut_indispo and fin_indispo) 
+		or (debut<= debut_indispo and fin>=fin_indispo))
+		and h.capacite_acceuil_h>=nb_personne
+		and h.idh=c.idh
+		and c.idcml = t.idcml
+		and annee_s= concat(year(debut),'-01-01')
+		and saison= 'haute';
+elseif 'moyenne' in (select saison from saison where debut between debut_saison and fin_saison)
+then
+	insert into habitation_dispo_total
+	select h.*,datediff(fin,debut)*t.tarif from habitation h, tarification t, contrat_mandat_locatif c
+	where h.idh not in (select idh from indispo 
+		where (fin between debut_indispo and fin_indispo) 
+		or (debut between debut_indispo and fin_indispo) 
+		or (debut<= debut_indispo and fin>=fin_indispo))
+		and h.capacite_acceuil_h>=nb_personne
+		and h.idh=c.idh
+		and c.idcml = t.idcml
+		and annee_s= concat(year(debut),'-01-01')
+		and saison= 'moyenne';
+else
+	insert into habitation_dispo_total
+	select h.*,datediff(fin,debut)*t.tarif from habitation h, tarification t, contrat_mandat_locatif c
+	where h.idh not in (select idh from indispo 
+		where (fin between debut_indispo and fin_indispo) 
+		or (debut between debut_indispo and fin_indispo) 
+		or (debut<= debut_indispo and fin>=fin_indispo))
+		and h.capacite_acceuil_h>=nb_personne
+		and h.idh=c.idh
+		and c.idcml = t.idcml
+		and annee_s= concat(year(debut),'-01-01')
+		and saison= 'basse';
+end if;
 END //
 DELIMITER ;
 
@@ -667,10 +718,19 @@ drop procedure if exists cleandispo;
 DELIMITER //
 CREATE PROCEDURE cleandispo()
 BEGIN
-delete from habitation_dispo;
+delete from habitation_dispo_total;
 END //
 DELIMITER ;
 
+drop procedure if exists addadmin;
+DELIMITER //
+CREATE PROCEDURE addadmin(in idadd int)
+BEGIN
+update user set role =1 where id = concat(idadd,'|emp');
+END //
+DELIMITER ;
+
+call addadmin(1);
 /*
 DELIMITER //
 CREATE PROCEDURE deletehabita
@@ -719,24 +779,3 @@ and t.annee_s = s.annee_s
 and t.idcml = cml.idcml 
 and cml.idh = h.idh 
 and h.idp = p.idp);
-
-create or replace view viewtarif_Bas as (
-select h.idh,t.tarif
-from tarification t, contrat_mandat_locatif cml, habitation_dispo h
-where cml.idh = h.idh  and t.idcml = cml.idcml and saison='basse');
-
-create or replace view viewtarif_Moy as (
-select h.idh,t.tarif
-from tarification t, contrat_mandat_locatif cml, habitation_dispo h
-where cml.idh = h.idh  and t.idcml = cml.idcml and saison='moyenne');
-
-create or replace view viewtarif_Hau as (
-select h.idh,t.tarif
-from tarification t, contrat_mandat_locatif cml, habitation_dispo h
-where cml.idh = h.idh  and t.idcml = cml.idcml and saison='haute');
-
-create or replace view viewHabitat_dispo as (
-select h.idh, h.numero_h, h.rue_h, h.ville_h, h.CP_h, h.nom_immeuble_h, h.superficie_h, h.type_h, 
-	h.capacite_acceuil_h, h.surface_habitable_h, h.surface_balcon_h, h.distance_piste_h, h.exposition_h, h.cave_h, h.local_a_ski_h, h.idp,th.tarif tarif_haut,tm.tarif tarif_moyen,tb.tarif tarif_bas
-from habitation_dispo h, viewtarif_Bas tb, viewtarif_Moy tm, viewtarif_Hau th
-where th.idh = h.idh  and tm.idh = h.idh and tb.idh = h.idh);

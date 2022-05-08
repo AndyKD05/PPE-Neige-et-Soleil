@@ -1,9 +1,11 @@
 <?php
 	$unControleur->setTable("proprietaire");
 	$lesProprietaires = $unControleur->selectAll();
+	$unControleur->setTable("images");
+	$lesimages = $unControleur->selectAll();
 	$tab=null;
 	$unControleur->callproc('cleandispo',$tab);
-	if(isset($_GET['action']))
+	if(isset($_GET['action']) and isset($_GET['idh']))
 	{
 		$idh = $_GET['idh'];
 		$tab= array('nb_personnes_r' =>$_SESSION['select_nb_personne'],
@@ -18,14 +20,14 @@
 		);
 		$unControleur->setTable("reservation");
 		$unControleur->insert($tab);
-		echo 'reservation effectuée';
+		echo 'reservation effectuée, en attente de confirmation';
 
 
 	}
 
 	if (isset($_SESSION['email']))
 	{
-		$unControleur->setTable("habitation_dispo");
+		$unControleur->setTable("viewHabitat_dispo");
 		require_once("vue/vue_select_catalogue.php");
 		if(isset($_POST['Filtrer']))
 		{
@@ -37,8 +39,8 @@
 			$unControleur->callproc('selectdispo',$tab);
 		}
 	}
-	$unControleur->setTable("habitation_dispo");
+	$unControleur->setTable("habitation_dispo_total");
 
-	$lesHabitations_dispo = $unControleur->selectAll ();
+	$lesHabitations_dispo_total = $unControleur->selectAll ();
 	require_once("vue/vue_le_catalogue.php");
 ?>

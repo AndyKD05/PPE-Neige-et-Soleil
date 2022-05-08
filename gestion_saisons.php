@@ -1,4 +1,4 @@
-
+<h2>Gestion des saisons</h2>
 <?php
 if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 {

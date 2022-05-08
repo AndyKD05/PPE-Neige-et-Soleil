@@ -1,4 +1,4 @@
-
+<h2>Gestion des reservations</h2>
 <?php
 	$unControleur->setTable("client");
 	$lesClients = $unControleur->selectAll();

@@ -57,8 +57,3 @@ footer{
   color: aliceblue;
 }
 
-
-.wrapper {
-  display: grid;
-  grid-template-columns: 600px 600px;
-}

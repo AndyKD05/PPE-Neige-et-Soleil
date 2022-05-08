@@ -1,9 +1,11 @@
 <?php
 	session_start();
+	ob_start();
 	require_once("controleur/config_bdd.php");
 	require_once("controleur/controleur.class.php");
 	$unControleur = new Controleur($serveur,$bdd,$user,$mdp);
 ?>
+		
 
 
 <!DOCTYPE html>
@@ -11,18 +13,9 @@
 
   <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <title>Neige et Soleil</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css"> 
 
   </head>
 
@@ -30,66 +23,95 @@
 
     <!-- Navigation -->
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="logo navbar-brand" href="index.php">Neige et soleil</a>
+   <nav class="navbar navbar-expand-lg bg-info">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse justify-content-center" id="navbarsExample08">
+  	<a class="mx-5" href="index.php?page=0">
+  		<img class src="images/logo.png" width="115" height="115"  >
+  	</a>
+    <ul class="navbar-nav text-blod">		
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            
-            <li class="nav-item active">
+	<?php
+	if(!isset($_SESSION['email']))
+		{
+			echo
+			'<li class="nav-item px-3 x-5">
+        		<a class="nav-link text-light font-weight-bold" href="index.php?page=0">Accueil</a>
+      		</li>';
 
-                <a class="nav-link" href="index.php">Home</a>
+     		 echo
+			'<li class="nav-item px-3">
+       			<a class="nav-link text-light font-weight-bold" href="index.php?page=21">Activité de la région</a>
+      		</li>';
 
-            </li>
-			<!--
-			<li class="nav-item active">
-				<a class="nav-link" href="/vue/vue_connexion_cli.php">Connexion<span class="sr-only">(current)</span></a>
-			</li>
 
-			<li class="nav-item active">
-				<a class="nav-link" href="/vue/vue_inscription_Client.php">Inscription<span class="sr-only">(current)</span></a>
-			</li>
--->
-			
-			<?php
+     		echo
+			'<li class="nav-item px-3">
+        		<a class="nav-link text-light font-weight-bold" href="index.php?page=22">Partenaire</a>
+      		</li>';
 
-			if(!isset($_SESSION['email']))
-			{
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=2">Offres</a>
-				</li>';
 
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=18">Sign In</a>
-				</li>';
+			echo
+			'<li class="nav-item px-3">
+       			<a class="nav-link text-light font-weight-bold" href="index.php?page=2">Offres</a>
+     		</li>';
 
-				echo
-				'<li class="nav-item">
-					<a class="btn btn-primary" href="index.php?page=17">Sign Up</a>
-				</li>';
+      		echo'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+
+      		echo'	
+    	 	<li class="nav-item dropdown px-4">
+	        	<a class="nav-link text-light btn btn-primary   dropdown-toggle " href="#" id="dropdownResultat" role="button" data-bs-toggle="dropdown" aria-expanded="false">Connexion</a>
+	        	<div class="dropdown-menu" aria-labelledby="dropdown08">
+		          	<a class="dropdown-item" href="index.php?page=16">Connexion propriétare</a>
+		          	<a class="dropdown-item" href="index.php?page=17">Connexion client</a>
+		          	<a class="dropdown-item" href="index.php?page=15">Connexion employé</a>
+	        	</div>
+      		</li> ';
+
+         	echo'	
+       		<li class="nav-item dropdown px-2">
+        		<a class="nav-link btn text-black btn-light dropdown-toggle " href="#" id="dropdownResultat" role="button" data-bs-toggle="dropdown" aria-expanded="false">Inscription</a>
+	        	<div class="dropdown-menu" aria-labelledby="dropdown08">
+		          	<a class="dropdown-item" href="index.php?page=19">Inscription propriétare</a>
+		          	<a class="dropdown-item" href="index.php?page=18">Inscritpion client</a>
+	        	</div>
+      		</li>';
 				
 				
-			}
+		}
 
 			if(isset($_SESSION['email']))
 			{
+				if($_SESSION['role']=="prop")
+				{
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=2">Offres</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=7">CML</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=8">Exception</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=11">Tarifs</a>
+					</li>';
+				}
 
-				if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
+				if($_SESSION['role']=="emp")
 				{
 
 					echo
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=2">Offres</a>
 					</li>';
-				}
-				if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
-				{
 					echo
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=4">Client</a>
@@ -99,22 +121,10 @@
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=11">Tarifs</a>
 					</li>';
-				}
-				if($_SESSION['role']=="emp")
-				{
 					echo
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=5">Employé</a>
 					</li>';
-				}
-
-				echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=6">Saisons</a>
-				</li>';
-				if($_SESSION['role']=="prop" or $_SESSION['role']=="emp")
-				{
-
 					echo
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=7">CML</a>
@@ -123,24 +133,10 @@
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=8">Exception</a>
 					</li>';
-				}
-				if($_SESSION['role']=="cli" or $_SESSION['role']=="emp")
-				{
 					echo
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=10">Location</a>
 					</li>';
-				}
-				if($_SESSION['role']=="cli")
-				{
-					echo
-					'<li class="nav-item">
-						<a class="nav-link" href="index.php?page=9">Réservation</a>
-					</li>';
-				}
-				if($_SESSION['role']=="emp")
-				{
-
 					echo
 					'<li class="nav-item">
 						<a class="nav-link" href="index.php?page=11">Tarifs</a>
@@ -150,7 +146,26 @@
 						<a class="nav-link" href="index.php?page=12">Réservation</a>
 					</li>';
 				}
+				if($_SESSION['role']=="cli")
+				{
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=4">Mes informations</a>
+					</li>';
 
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=10">Location</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link" href="index.php?page=9">Réservation</a>
+					</li>';
+				}
+				echo
+				'<li class="nav-item">
+					<a class="nav-link" href="index.php?page=6">Saisons</a>
+				</li>';
 				echo
 				'<li class="nav-item">
 					<a class="nav-link" href="index.php?page=20">Déconnexion</a>
@@ -165,46 +180,16 @@
 					
 			}
 			?>
-            
-          </ul>
-        </div>
-      </div>
-    </nav>
-
+    </ul>
+  </div>
+</nav>
     
-    <header class="tete">
-       <div class="container my-auto">
-        <div class="row">
-          <div class="col-lg-10 mx-auto">
-            <h1 class="text-uppercase">
-              <strong class="presentation">Bienvenue sur Neige et Soleil</strong>
-            <hr width="50%" color="#FFA07A" />
-            </h1>
-			</div>
-			<div class="col-lg-8 mx-auto">
-				<p class="texto text-faded mb-5">Nous sommes une entreprise de prestation de services qui met en locations des appartements. Partez à la montagne avec nous !</p>
-				<a class="btn btn-dark btn-xl" href="#">Apprenez-en plus sur nous !</a>
-			</div>
-          </div>
-        </div>
-      </div>
 
-    </header>
-		</br>
+<?php
 		
-	<center>
-
-		<?php
-		require_once("home.php");
 		if (! isset($_SESSION['email']))
 		{
-			
-			/*
-			echo
-				'<li class="nav-item">
-					<a class="nav-link" href="index.php?page=2">Offres</a>
-				</li>';
-			*/
+
 			if(isset($_POST['seConnecterEmp']))
 			{
 				$email= $_POST['email']."|emp";
@@ -244,6 +229,7 @@
 			
 			if(isset($_POST['seConnecterCli']))
 			{
+				echo'test';
 				$email= $_POST['email']."|cli";
 				$mdp= hash('sha256',$_POST['mdp']);
 				$where = array('email'=>$email ,'mdp'=>$mdp);
@@ -260,31 +246,16 @@
 					echo "<br/> Vérifiez vos identifiants";
 				}
 			}
-			
-			if(isset($_GET['page']))
-			{
-				$page = $_GET['page'];
-			}else{
-				$page = 0;
-			}
-			switch ($page) {
-				case 0: require_once ("home.php"); break;
-				case 1: require_once ("sign_in.php"); break;
-				case 2: require_once ("gestion_offres.php"); break;
-				case 3: require_once ("sign_up.php"); break;
-				case 13: require_once ("gestion_forget_pass_prop.php"); break;
-				case 14: require_once ("gestion_forget_pass_cli.php"); break;
-				case 15: require_once ("vue/vue_connexion_emp.php"); break;
-				case 16: require_once ("vue/vue_connexion_prop.php"); break;
-				case 17: require_once ("vue/vue_connexion_cli.php"); break;
-				case 18: require_once ("gestion_inscription_client.php"); break;
-				case 19: require_once ("gestion_inscription_proprietaire.php"); break;
-			}
-
 		}
+?>
+
+
 		
-		if(isset($_SESSION['email']))
-		{
+<center>
+
+
+<?php
+
 
 			if(isset($_GET['page']))
 			{
@@ -294,6 +265,7 @@
 			}
 			switch ($page) {
 				case 0: require_once ("home.php"); break;
+				case 1: require_once ("vue/vue_inscription.php"); break;
 				case 2: require_once ("gestion_offres.php"); break;
 				case 3: require_once ("gestion_proprietaires.php"); break;
 				case 4: require_once ("gestion_clients.php"); break;
@@ -305,17 +277,43 @@
 				case 10: require_once ("gestion_CDL.php"); break;
 				case 11: require_once ("gestion_tarifs.php"); break;
 				case 12: require_once ("gestion_reservations.php"); break;
+				case 13: require_once ("gestion_forget_pass_prop.php"); break;
+				case 14: require_once ("gestion_forget_pass_cli.php"); break;
+				case 15: require_once ("vue/vue_connexion_emp.php"); break;
+				case 16: require_once ("vue/vue_connexion_prop.php"); break;
+				case 17: require_once ("gestion_connexion_cli.php"); break;
+				case 18: require_once ("gestion_inscription_client.php"); break;
+				case 19: require_once ("gestion_inscription_proprietaire.php"); break;
+				case 21: require_once ("vue_vitrine/vue_activite_region.php"); break;
+			    case 22: require_once ("vue_vitrine/vue_partenaire.php"); break;
+			    case 23: require_once ("vue_vitrine/vue_mention.php"); break;
+			 	case 24: require_once ("vue_vitrine/vue_a_propos.php"); break;
+			 	case 25: require_once ("vue_vitrine/vue_contact.php"); break;
+				default : require_once("vue/erreur.php"); break;
 				case 20: unset($_SESSION);
 						session_destroy();
 						header("Location: index.php");
 						 break;
-			}
+
 		}
 		?>
-	</center>
-	<footer class="py-2 fixed-bottom">
-		<p class="m-1 text-center text-white">Copyright &copy; Félix Millon & Théo Chesnais & Andy Kadiambu</p>
-	</footer>
-</body>
+</center>
 
+<div class="container-expand-lg bg-info">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="index.php?page=0" class="nav-link px-2 text-light">Accueil</a></li>
+        <li class="nav-item"><a href="index.php?page=22" class="nav-link px-2 text-light">Partenaire</a></li>
+        <li class="nav-item"><a href="index.php?page=2" class="nav-link px-2 text-light">Nos offres</a></li>
+        <li class="nav-item"><a href="index.php?page=24" class="nav-link px-2 text-light">A propos de nous</a></li>
+        <li class="nav-item"><a href="index.php?page=25" class="nav-link px-2 text-light">Contactez-nous</a></li>
+        <li class="nav-item"><a href="index.php?page=23" class="nav-link px-2 text-light">Mentions légales</a></li>
+    </ul>
+    <p class="text-center text-light font-weight-bold">&copy; 2021 Neige Soleil, Inc</p>
+  </footer>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 </html>

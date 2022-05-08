@@ -1,4 +1,4 @@
-
+<h2>Gestion des contrats de mandat locatif</h2>
 <?php
 	$unControleur->setTable("proprietaire");
 	$lesProprietaires = $unControleur->selectAll();
