@@ -116,7 +116,7 @@ echo '<h1>'.$unehabitation_dispo_total['nom_immeuble_h'].'.</h1>
 $i++;
 }
 ?>
-<table class="table table-striped table-dark"> 
+<table class="table table-striped table-info"> 
 <tr>
 	<td> Adresse </td>
 	<td> Descriptif </td>

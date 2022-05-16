@@ -2,7 +2,7 @@
 <h2> <strong class="presentation">Modification et insertion manuelle d'un contrat de location </strong></h2>
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<tr>
 				<td>prix total</td>
 				<td><input type="number" step="0.01" name="prix_total" value="<?php if($leCDL != null) echo $leCDL['prix_total']; ?>">

@@ -7,8 +7,12 @@
 <div class="container">  
 <br /> 
 <form method="post" class="form-inline">
+<<<<<<< HEAD
 <table class="table table-striped table-dark">
   <!--
+=======
+<table class="table table-striped table-info">
+>>>>>>> update
   <thead class="thead-dark">
   <tr class="table-info">
 		<th scope="col">

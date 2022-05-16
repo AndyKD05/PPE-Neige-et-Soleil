@@ -6,7 +6,7 @@
 <br/>
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<tr>
 				<td>Descriptif</td>
 				<td><input type="text" name="descriptif" value="<?php if($leCML != null) echo $leCML['descriptif']; ?>">

@@ -5,7 +5,7 @@
 <h2><strong class="presentation">Quel bien cherchez vous ?</strong></h2>
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<tr>
 			<td>
 			A quelles dates souhaitez vous réserver ?

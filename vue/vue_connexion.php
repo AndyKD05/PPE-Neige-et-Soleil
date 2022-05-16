@@ -2,7 +2,7 @@
 
 <h2><strong class="presentation"> Connexion </strong> </h2>
 <form method="post" class="form-inline">
-<table class="table table-striped table-dark">
+<table class="table table-striped table-info">
 
 	<tr>
 		<td><input type="submit" name="empl" value="Employé" class="btn btn-primary"></td> 

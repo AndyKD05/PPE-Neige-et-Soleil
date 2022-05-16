@@ -1,5 +1,10 @@
 
+<h1>Les offres</h1><br>
+<?php
+if(!isset($_SESSION['email']) or $_SESSION['role']=="emp")
+{
 
+<<<<<<< HEAD
      <!-- pour faciliter l’ergonomie de l’utilisateur : 
   Tableau avec lignes colorées alternativement, etc.
   -->
@@ -113,10 +118,208 @@
 			</div>
 			<?php } ?>                 
 		</div>
+=======
+	if(!isset($i))
+	{
+		$i=1;
+	}
+
+	foreach ($lesHabitations as $unehabitation)
+	{
+	echo'
+	<div id="myCarousel'.$i.'" class="carousel slide" data-bs-ride="carousel">
+	    <div class="carousel-inner">';
+	$j=1;
+	   foreach ($lesimages as $uneImage)
+	   {
+	        if($uneImage['idh']==$unehabitation['idh'])
+	        {
+	        	 if($j==1)
+		        {
+		        echo'
+			    <div class="carousel-item active">
+			        <img class="img-fluid" src="images/'.$uneImage['path_im'].'">
+
+			        <div class="container">
+			          <div class="carousel-caption text-start">
+			            <h1>'.$unehabitation['nom_immeuble_h'].'.</h1>';
+			            echo'</p>
+			          </div>
+			        </div>
+			      </div>
+			        ';
+		        }else
+		        {
+		        	 echo'
+			    <div class="carousel-item">
+			        <img class="img-fluid" src="images/'.$uneImage['path_im'].'">
+
+			        <div class="container">
+			          <div class="carousel-caption">
+			            <h1>'.$unehabitation['nom_immeuble_h'].'.</h1>';
+			            echo'</p>
+			          </div>
+			        </div>
+			      </div>
+			      </br>
+			        ';
+		        }
+		        
+			    $j++;
+
+	        }
+	       
+	   }
+	echo'
+>>>>>>> update
 	</div>
-</section> 
+
+	    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel'.$i.'" data-bs-slide="prev">
+	      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    </button>
+	    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel'.$i.'" data-bs-slide="next">
+	      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    </button>
+	  </div>
+
+	';
+	echo '<h1>'.$unehabitation['nom_immeuble_h'].'.</h1>
+	<table class="table table-striped table-dark"> 
+	<tr>
+	<td>Adresse</td>
+	<td>Superficie</td>
+	<td>Type</td>
+	<td>Capacite d\'acceuil</td>
+	<td>Surface</td>
+	<td>Balcon</td>
+	<td>Distance des piste</td>
+	<td>Exposition</td>
+	<td>Cave</td>
+	<td>Local à ski</td>
+	</tr>
+	<tr>
+			            
+			            	<td>'.$unehabitation['numero_h']." ".$unehabitation['rue_h']." ".$unehabitation['CP_h']." ".$unehabitation['ville_h'].'</td>
+			            	<td>'.$unehabitation['superficie_h'].'.</td>
+			            	<td>'.$unehabitation['type_h'].'.</td>
+			            	<td>'.$unehabitation['capacite_acceuil_h'].'.</td>
+			            	<td>'.$unehabitation['surface_habitable_h'].'.</td>
+			            	<td>'.$unehabitation['surface_balcon_h'].'.</td>
+			            	<td>'.$unehabitation['distance_piste_h'].'.</td>
+			            	<td>'.$unehabitation['exposition_h'].'.</td>
+			            	<td>'.$unehabitation['cave_h'].'.</td>
+			            	<td>'.$unehabitation['local_a_ski_h'].'.</td>
+	</tr></table></br></br>';
+	$i++;
+	}
+}
+?>
+<?php
+if(isset($_SESSION['role']))
+{
+	if($_SESSION['role']=="prop")
+	{
+
+		if(!isset($i))
+		{
+			$i=1;
+		}
+
+		foreach ($lesHabitations as $unehabitation)
+		{
+			if($unehabitation['idp']==$_SESSION['id'] and $_SESSION['role']=="prop")
+			{
+			echo'
+			<div id="myCarousel'.$i.'" class="carousel slide" data-bs-ride="carousel">
+			    <div class="carousel-inner">';
+			$j=1;
+			   foreach ($lesimages as $uneImage)
+			   {
+			        if($uneImage['idh']==$unehabitation['idh'])
+			        {
+			        	 if($j==1)
+				        {
+				        echo'
+					    <div class="carousel-item active">
+					        <img class="img-fluid" src="images/'.$uneImage['path_im'].'">
+
+					        <div class="container">
+					          <div class="carousel-caption text-start">
+					            <h1>'.$unehabitation['nom_immeuble_h'].'.</h1>';
+					            echo'</p>
+					          </div>
+					        </div>
+					      </div>
+					        ';
+				        }else
+				        {
+				        	 echo'
+					    <div class="carousel-item">
+					        <img class="img-fluid" src="images/'.$uneImage['path_im'].'">
+
+					        <div class="container">
+					          <div class="carousel-caption">
+					            <h1>'.$unehabitation['nom_immeuble_h'].'.</h1>';
+					            echo'</p>
+					          </div>
+					        </div>
+					      </div>
+					      </br>
+					        ';
+				        }
+				        
+					    $j++;
+
+			        }
+		       }
+		echo'
+		</div>
+
+		    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel'.$i.'" data-bs-slide="prev">
+		      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		    </button>
+		    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel'.$i.'" data-bs-slide="next">
+		      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		    </button>
+		  </div>
+
+		';
+		echo '<h1>'.$unehabitation['nom_immeuble_h'].'.</h1>
+		<table class="table table-striped table-dark"> 
+		<tr>
+		<td>Adresse</td>
+		<td>Superficie</td>
+		<td>Type</td>
+		<td>Capacite d\'acceuil</td>
+		<td>Surface</td>
+		<td>Balcon</td>
+		<td>Distance des piste</td>
+		<td>Exposition</td>
+		<td>Cave</td>
+		<td>Local à ski</td>
+		</tr>
+		<tr>
+				            
+				            	<td>'.$unehabitation['numero_h']." ".$unehabitation['rue_h']." ".$unehabitation['CP_h']." ".$unehabitation['ville_h'].'</td>
+				            	<td>'.$unehabitation['superficie_h'].'.</td>
+				            	<td>'.$unehabitation['type_h'].'.</td>
+				            	<td>'.$unehabitation['capacite_acceuil_h'].'.</td>
+				            	<td>'.$unehabitation['surface_habitable_h'].'.</td>
+				            	<td>'.$unehabitation['surface_balcon_h'].'.</td>
+				            	<td>'.$unehabitation['distance_piste_h'].'.</td>
+				            	<td>'.$unehabitation['exposition_h'].'.</td>
+				            	<td>'.$unehabitation['cave_h'].'.</td>
+				            	<td>'.$unehabitation['local_a_ski_h'].'.</td>
+		</tr></table></br></br>';
+		$i++;
+			}
+		}
+	}
+}
+?>
 <!-- ********************************************************************************* --> 
 <!-- ********************************************************************************* --> 
+
 							</br>
 							</br>
 <div class="container_fluid p-3 my-3 bg-light">
@@ -126,6 +329,7 @@
 <thead>
 <tr class="table-dark">
 	<?php
+<<<<<<< HEAD
 	//if (isset($_SESSION['email']) and $_SESSION['role']=="emp")	 
 	{  ?>
 	<th> id </th>
@@ -152,13 +356,47 @@
 </tr>
 </thead>
 <tbody>
+=======
+	if(isset($_SESSION['email']))
+	{
+		if ( $_SESSION['role']=="emp")
+		{
+			echo'<td> id habitation </td>';
+		}
+		echo'
+		<td> Adresse </td>
+		<td> Nom </td>
+		<td> Superficie </td>
+		<td> Type </td>
+		<td> Capacite d\'acceuil </td>
+		<td> Surface habitable </td>
+		<td> Balcon </td>
+		<td> Distance_piste </td>
+		<td> Exposition </td>
+		<td> Cave </td>
+		<td> Local à ski </td>
+		<td> Proprietaire </td>';
+		if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
+		{
+		echo	"<td> Opérations </td>";
+		} 
+	}
+	?>
+</tr>
+
+<h3>Ensemble des offres : </h3>
+>>>>>>> update
 <?php
 //if(isset($_SESSION['email']))
 {
 
 	foreach ($lesHabitations as $uneHabitation){
 		echo "<tr>";
+<<<<<<< HEAD
 		//if(($uneHabitation['idp']==$_SESSION['id'] and $_SESSION['role']=="prop") or $_SESSION['role']=="emp" or !isset($_SESSION['email']))
+=======
+		if(($uneHabitation['idp']==$_SESSION['id'] and $_SESSION['role']=="prop") or $_SESSION['role']=="emp")
+>>>>>>> update
 		{
 			//if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 			{

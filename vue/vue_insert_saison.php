@@ -7,7 +7,7 @@
 <br />
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<tr>
 				<td>Saison</td>
 				<td><select name="saison">

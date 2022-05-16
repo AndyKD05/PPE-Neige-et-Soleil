@@ -10,7 +10,7 @@
 	<input type="submit" name="Rechercher" value="Rechercher" class="btn btn-secondary">
 </form>
 </br>
-<table class="table table-striped table-dark"> 
+<table class="table table-striped table-info"> 
 <tr>
 	<td> Saison</td>
 	<td> Début saison </td>

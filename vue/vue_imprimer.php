@@ -7,7 +7,7 @@
 	<input type="submit" name="Rechercher" value="Rechercher" class="btn btn-success">
 </form>
 </br>
-<table class="table table-striped table-dark"> 
+<table class="table table-striped table-info"> 
 <tr>
 	<td> id contrat </td>
 	<td> Prix total</td>

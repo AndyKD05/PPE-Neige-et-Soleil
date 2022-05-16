@@ -4,7 +4,7 @@
 <br />
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark" id="tableau">
+	<table class="table table-striped table-info" id="tableau">
 		<tr>
 				<td>Numero de rue</td>
 				<td><input type="text" name="numero_h" value="<?php if($lhabitation != null) echo $lhabitation['numero_h']; ?>">

@@ -1,4 +1,4 @@
-  
+ 
 <head>    
   <style>
       .bd-placeholder-img {
@@ -30,8 +30,8 @@
         <img class="img-fluid" src="images/paysage1.png">
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Example headline.</h1>
-            <p>Some representative placeholder content for the first slide of the carousel.</p>
+            <h1>Vallée du Queyras</h1>
+            <p>Randonnée dans la vallée du Queyras. Situé dans le nord-est du département des Hautes-Alpes, le Parc naturel régional du Queyras est le paradis des randonneurs.</p>
           </div>
         </div>
       </div>
@@ -41,8 +41,8 @@
 
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Some representative placeholder content for the second slide of the carousel.</p>
+            <h1>Maison du Lac</h1>
+            <p>Rien de plus authentique que les chalets au cœur de la montagne pour profiter au maximum. Vous cherchez un Chalet à louer ?</p>
           </div>
         </div>
       </div>
@@ -52,8 +52,8 @@
 
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>One more for good measure.</h1>
-            <p>Some representative placeholder content for the third slide of this carousel.</p>
+            <h1>Chalet Montagne du Queyras</h1>
+            <p>Chalet dont le bois est le matériau de construction essentiel.</p>
           </div>
         </div>
       </div>
@@ -75,10 +75,10 @@
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">World</strong>
-            <h3 class="mb-0">Featured post</h3>
+            <strong class="d-inline-block mb-2 text-primary">Chalet</strong>
+            <h3 class="mb-0">Bord de Lac</h3>
             <div class="mb-1 text-muted">Nov 12</div>
-              <p class="card-text mb-auto">This is a wider card with testes text below as a natural lead-in to additional content.</p>
+              <p class="card-text mb-auto" align="justify">Maison de campagne au bord de l'eau. Location Chalet Queyras, pour 6 personnes.</p>
               <a href="#" class="stretched-link">Continue reading</a>
             </div>
           <div class="col-auto d-none d-lg-block">
@@ -91,10 +91,10 @@
       <div class="col-md-6">
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Design</strong>
-            <h3 class="mb-0">Post title</h3>
+            <strong class="d-inline-block mb-2 text-success">Queyras</strong>
+            <h3 class="mb-0">Maison de Montagne</h3>
             <div class="mb-1 text-muted">Nov 11</div>
-            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            <p class="mb-auto" align="justify">La location de vacances de vos rêves, avec tout le nécessaire pour un séjour sans stress.</p>
             <a href="#" class="stretched-link">Continue reading</a>
           </div>
           <div class="col-auto d-none d-lg-block">

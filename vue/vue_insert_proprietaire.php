@@ -3,7 +3,7 @@
 <br />
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<tr>
 				<td>Nom</td>
 				<td><input type="text" name="nom_p" value="<?php if($leProprietaire != null) echo $leProprietaire['nom_p']; ?>">

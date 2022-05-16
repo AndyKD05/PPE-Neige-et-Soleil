@@ -1,7 +1,7 @@
 
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<?php 
 		if ($leProprietaire == null)
 		{

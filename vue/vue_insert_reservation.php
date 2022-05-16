@@ -4,7 +4,7 @@
 <br />
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<tr>
 				<td>Nombre de personne</td>
 				<td><input type="number" name="nb_personnes_r" value="<?php if($laReservation != null) echo $laReservation['nb_personnes_r']; ?>">

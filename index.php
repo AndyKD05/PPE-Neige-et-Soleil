@@ -162,6 +162,7 @@ switch ($page) {
 				{
 					echo
 					'<li class="nav-item">
+<<<<<<< HEAD
 						<a class="nav-link '.$menuActive2.' " href="index.php?page=2">Offres</a>
 					</li>';
 					echo
@@ -175,6 +176,21 @@ switch ($page) {
 					echo
 					'<li class="nav-item">
 						<a class="nav-link '.$menuActive11.' " href="index.php?page=11">Tarifs</a>
+=======
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=2">Offres</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=7">CML</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=8">Exception</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=11">Tarifs</a>
+>>>>>>> update
 					</li>';
 				}
 
@@ -183,15 +199,24 @@ switch ($page) {
 
 					echo
 					'<li class="nav-item">
+<<<<<<< HEAD
 						<a class="nav-link '.$menuActive2.' " href="index.php?page=2">Offres</a>
 					</li>';
 					echo
 					'<li class="nav-item">
 						<a class="nav-link '.$menuActive4.' " href="index.php?page=4">Client</a>
+=======
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=2">Offres</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=4">Client</a>
+>>>>>>> update
 					</li>';
 
 					echo
 					'<li class="nav-item">
+<<<<<<< HEAD
 						<a class="nav-link '.$menuActive11.' " href="index.php?page=11">Tarifs</a>
 					</li>';
 					echo
@@ -217,31 +242,78 @@ switch ($page) {
 					echo
 					'<li class="nav-item">
 						<a class="nav-link '.$menuActive12.' " href="index.php?page=12">Réservation</a>
+=======
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=11">Tarifs</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=5">Employé</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=7">CML</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=8">Exception</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=10">Location</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=11">Tarifs</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=12">Réservation</a>
+>>>>>>> update
 					</li>';
 				}
 				if($_SESSION['role']=="cli")
 				{
 					echo
 					'<li class="nav-item">
+<<<<<<< HEAD
 						<a class="nav-link '.$menuActive4.' " href="index.php?page=4">Mes informations</a>
+=======
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=4">Mes informations</a>
+>>>>>>> update
 					</li>';
 
 					echo
 					'<li class="nav-item">
+<<<<<<< HEAD
 						<a class="nav-link '.$menuActive10.' " href="index.php?page=10">Location</a>
 					</li>';
 					echo
 					'<li class="nav-item">
 						<a class="nav-link '.$menuActive9.' " href="index.php?page=9">Réservation</a>
+=======
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=10">Location</a>
+					</li>';
+					echo
+					'<li class="nav-item">
+						<a class="nav-link text-light font-weight-bold" href="index.php?page=9">Réservation</a>
+>>>>>>> update
 					</li>';
 				}
 				echo
 				'<li class="nav-item">
+<<<<<<< HEAD
 					<a class="nav-link '.$menuActive6.' " href="index.php?page=6">Saisons</a>
 				</li>';
 				echo
 				'<li class="nav-item">
 					<a class="nav-link '.$menuActive20.' " href="index.php?page=20">Déconnexion</a>
+=======
+					<a class="nav-link text-light font-weight-bold" href="index.php?page=6">Saisons</a>
+				</li>';
+				echo
+				'<li class="nav-item">
+					<a class="nav-link text-light font-weight-bold" href="index.php?page=20">Déconnexion</a>
+>>>>>>> update
 				</li>';
 
 				if(isset($_GET['page']))

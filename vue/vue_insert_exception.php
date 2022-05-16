@@ -4,7 +4,7 @@
 <h2><strong class="presentation">Insertion d'une exception</strong></h2>
 
 <form method="post" class="form-inline">
-	<table class="table table-striped table-dark">
+	<table class="table table-striped table-info">
 		<tr>
 				<td>Date debut</td>
 				<td><input type="date" name="date_debute" value="<?php if($lException != null) echo $lException['date_debute']; ?>">
