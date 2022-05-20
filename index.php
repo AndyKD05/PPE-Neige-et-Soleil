@@ -38,8 +38,9 @@
 	if(!isset($_SESSION['email']))
 		{
 			echo
-			'<li class="nav-item px-3 x-5">
-        		<a class="nav-link text-light font-weight-bold" href="index.php?page=0">Accueil</a>
+			' 
+			<li class="nav-item active px-3 x-5">
+        		<a class="nav-link text-light font-weight-bold active" aria-current="page" href="index.php?page=0">Accueil</a>
       		</li>';
 
      		 echo
