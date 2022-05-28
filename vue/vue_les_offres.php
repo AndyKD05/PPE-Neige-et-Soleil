@@ -1,18 +1,18 @@
-<br><br>
-
-
+<br>
 <section class="pricing-table">
 	<div class="container">
 		<div class="block-heading">
-		  <h2>Choisissez !</h2>
+		  <h2>Choisissez de passer des bonnes vacances !</h2>
 		</div>
-		<br><br>
+		<br>
+
+
 		<div class="row justify-content-md-center">
 			<?php 
 			foreach ($lesHabitations as $uneHabitation) {
 			?> 
-			<div class="col-md-5 col-lg-4">
-				<div class="card h-100 bg-dark">
+			<div class="col-md-5 col-lg-4  pt-3 pr-3 pb-3 pl-3"> <!-- pt-3 pr-3 pb-3 pl-3 ==> https://devstory.net/12035/bootstrap-spacing -->
+				<div class="card h-100 bg-light">
 					<div class="item">
 						<div class="heading">
 							<h3><?php echo strtoupper($uneHabitation['nom_immeuble_h']); ?></h3>
@@ -48,13 +48,15 @@
 							</button>
 						</div>
 							
-							<div class='card-body'>
-								<h4 class='card-title'>
-								<a>".$uneHabitation['type_h']."</a>
-								</h4>
+							<div class='card-body'>							   
+								<h3 class='card-title'>
+								<a>".$uneHabitation['type_h']."</a>								
+								</h3> 
+								<h4 class='card-title'> xxx € / nuit </h4> 
 								<div class='card-text'>
 									<p class='card-text' align='justify'>
-										<a>Adresse :</a> ".$uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']." </br>
+									<!--<a>Adresse :</a> ".$uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']." </br>
+									-->
 										<a>Superficie :</a> ".$uneHabitation['superficie_h']." m°2</br>
 										<a>Capacité :</a> ".$uneHabitation['capacite_acceuil_h']." personne(s) </br>
 										<!--
@@ -70,8 +72,7 @@
 								</div>
 							</div>
 							<div class='unecarte card-footer'>
-						<!--      <small class='text-muted'>&#9733; &#9733; &#9733; &#9733; &#9733;</small> -->
-							
+							<button class='btn btn-outline-primary btn-lg' style='border-radius:30px'>Select</button>  
 						</div>	
 									 
 			";?>
@@ -92,11 +93,10 @@
 <table class="table table-striped table-dark"> 
 <tr>
 	<?php
-	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
+	//if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
+	if (isset($_SESSION['email']) and ($_SESSION['role']=="emp" or $_SESSION['role']=="prop" )) 
 	{
-		echo'<td> id habitation </td>';
-	}
-	?>
+		echo'<td> id habitation </td>'; 	?>
 	<td> Adresse </td>
 	<td> Descriptif </td>
 	<td> Superficie </td>
@@ -109,10 +109,13 @@
 	<td> Cave </td>
 	<td> Local à ski </td>
 	<td> Proprietaire </td>
-	<?php 	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
-{
-echo	"<td> Opérations </td>";
-} ?>
+	<?php 	
+	}	
+	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
+	{
+	echo	"<td> Opérations </td>";
+	} 
+	?>
 </tr>
 
 <?php
