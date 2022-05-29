@@ -7,9 +7,10 @@
 		<td><input type="password" name="mdpco"></td>
 	</tr>
 	<tr>
-		<td><input type="reset" name="Annuler" value="Annuler" class="btn btn-danger"></td> 
-		<td><input type="submit" name="Valider" value="Valider" class="btn btn-success"></td>
-
+		<td align="center">
+		<input type="reset" name="Annuler" value="Annuler" class="btn btn-danger">		
+		 <input type="submit" name="Valider" value="Valider" class="btn btn-success">
+		</td>
 	</tr>
 </form>
 </table>

@@ -77,22 +77,20 @@
    <div class="mb-3">
     <input type="text" placeholder="Réponse *" name="reponse" class="form-control">
   </div>
-
-
-
-  <br>
-
+ 
   <button type="submit" name="Inscrire" class="btn btn-primary">S'inscrire</button>
  <button type="reset"  class="btn btn-danger">Annuler</button>
+ 
+ <br />
 </form>
-         
+    
             <div class="card-footer">
-
                 <div class="d-flex justify-content-center links">
-                    Déja un compte ? <a href="index.php?page=11">Se connecter</a>
+                    Déja un compte ?  <a href="index.php?page=11">Se connecter</a>
                 </div>
-               </div>
             </div>
+
+            
         </div>
     </div>
 </div>

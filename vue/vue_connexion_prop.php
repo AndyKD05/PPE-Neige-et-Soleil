@@ -1,10 +1,14 @@
 
 
-<br /><br /><br />
+<br /> 
 
 <h2><strong class="presentation"> Connexion proprietaire </strong> </h2>
+<div class="container">  
+<br />    
 <form method="post" class="form-inline">
 <table class="table table-striped table-dark">
+
+<!--
 <tr>
 		<td>
       <a href="index.php?page=15">
@@ -22,6 +26,8 @@
       </a>
     </td>
 	</tr>
+-->
+
 	<tr>
 		<td>Email</td>
 		<td><input type="text" name="email"></td>
@@ -33,7 +39,8 @@
     <td></td>
 	</tr>
 	<tr>
-		<td><input type="reset" name="Annuler" value="Annuler" class="btn btn-danger"></td> 
+		<td align="right">
+      <input type="reset" name="Annuler" value="Annuler" class="btn btn-danger"></td> 
 		<td><input type="submit" name="seConnecterProp" value="Se Connecter" class="btn btn-success"></td>
     <td></td>
 	</tr>
@@ -43,7 +50,9 @@
 <a href="index.php?page=13">
 			<input type="button" value="Mot de passe oublié" class="btn btn-secondary">
 </a>
-
+</div> 
+<br />
+<br />
 <!--
 <footer class="py-5">
 <div class="container">

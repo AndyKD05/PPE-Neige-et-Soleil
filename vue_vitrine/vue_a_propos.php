@@ -12,23 +12,9 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
 
         <div class="col">
-          <div class="card shadow-sm ">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Amandine BREMONT</title>
-              <rect width="100%" height="100%" fill="#55595c"/>
-             
-              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-            </svg>              
-            <div class="card-body">
-            <h4>Amandine <br>BREMONT</h4>
-              <p class="card-text"></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
           <div class="card shadow-sm">
-          <image src="images\_andy.png"  class="img-fluid img-thumbnail"/>   <div class="card-body">
+          <image src="images\_andy.png"  class="img-fluid img-thumbnail"/>   
+          <div class="card-body">
             <h4>Andy <br>KADIAMBU</h4>
               <p class="card-text"></p>
             </div>
@@ -55,7 +41,21 @@
               <p class="card-text"></p>
             </div>
           </div>
-        </div>        
+        </div>            
+        
+        <div class="col">
+          <div class="card shadow-sm ">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Amandine BREMONT</title>
+              <rect width="100%" height="100%" fill="#55595c"/>             
+              <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+            </svg>              
+            <div class="card-body">
+            <h4>Amandine <br>BREMONT</h4>
+              <p class="card-text"></p>
+            </div>
+          </div>
+        </div> 
 
       </div>
     </div>

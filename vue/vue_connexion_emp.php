@@ -1,34 +1,12 @@
-
-
-<!DOCTYPE html>
-<html lang="fr">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Neige et Soleil</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/CSS/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="/CSS/style2.css"> 
-
-  </head>
-
-  <body>
-
-    
-   
-<br /><br /><br />
+<br />
 
 <h2> <strong class="presentation">Connexion Employe </strong></h2>
+<div class="container">  
+<br /> 
 <form method="post" class="form-inline">
 <table class="table table-striped table-dark">
+
+<!--
 <tr>
 		<td>
       <a href="index.php?page=15">
@@ -46,6 +24,8 @@
       </a>
     </td>
 	</tr>
+-->
+
 	<tr>
 		<td>Email</td>
 		<td><input type="text" name="email"></td>
@@ -57,14 +37,16 @@
     <td></td>
 	</tr>
 	<tr>
-		<td><input type="reset" name="Annuler" value="Annuler" class="btn btn-danger"></td> 
+		<td align="right"><input type="reset" name="Annuler" value="Annuler" class="btn btn-danger"></td> 
 		<td><input type="submit" name="seConnecterEmp" value="Se Connecter" class="btn btn-success"></td>
     <td></td>
 
 	</tr>
 </form>
 </table>
-
+</div>
+<br />
+<br />
 <!--
 <footer class="py-5">
 <div class="container">
@@ -72,6 +54,4 @@
 </div>
 </footer>
 -->
-  </body>
-
-</html>
+   
