@@ -83,7 +83,7 @@
  
  <br />
 </form>
-    
+</div>
             <div class="card-footer">
                 <div class="d-flex justify-content-center links">
                     Déja un compte ?  <a href="index.php?page=11">Se connecter</a>
