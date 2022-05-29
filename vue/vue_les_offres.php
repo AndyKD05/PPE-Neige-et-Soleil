@@ -4,9 +4,6 @@
 		<div class="block-heading">
 		  <h2>Choisissez de passer des bonnes vacances !</h2>
 		</div>
-		<br>
-
-
 		<div class="row justify-content-md-center">
 			<?php 
 			foreach ($lesHabitations as $uneHabitation) {
@@ -19,15 +16,15 @@
 							 $image=str_replace(" ","",$uneHabitation['nom_immeuble_h']); ?></h3>
 						</div>
 						<p><?php echo $uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']; ?></p>						 
+						
 						<div class="features">
-
-			<?php echo "
+						<?php echo "
 						<div id='{$image}' class='carousel slide' data-bs-ride='carousel'>
 							<div class='carousel-indicators'>
 								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='0' class='active' aria-current='true' aria-label='Slide 1'></button>
 								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='1' aria-label='Slide 2'></button>
 								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='2' aria-label='Slide 3'></button>
-								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='2' aria-label='Slide 4'></button>
+								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='3' aria-label='Slide 4'></button>
 							</div>
 							<div class='carousel-inner'>
 								<div class='carousel-item active'>
@@ -41,8 +38,7 @@
 								</div>
 								<div class='carousel-item'>
 									<img src='images/{$image}_neige.jpeg' class='card-img-top' width='100' height='250'>
-								</div>
-								
+								</div>								
 							</div>
 							<button class='carousel-control-prev' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev'>
 								<span class='carousel-control-prev-icon' aria-hidden='true'></span>
@@ -55,10 +51,10 @@
 						</div>
 							
 							<div class='card-body'>							   
-								<h3 class='card-title'>
+								<h4 class='card-title'>
 								<a>".$uneHabitation['type_h']."</a>								
-								</h3> 
-								<h4 class='card-title'> xxx € / nuit </h4> 
+								<br> xxx € / nuit 
+								</h4> 
 								<div class='card-text'>
 									<p class='card-text' align='justify'>
 									<!--<a>Adresse :</a> ".$uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']." </br>
@@ -99,8 +95,7 @@
 <table class="table table-striped table-dark"> 
 <tr>
 	<?php
-	//if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
-	if (isset($_SESSION['email']) and ($_SESSION['role']=="emp" or $_SESSION['role']=="prop" )) 
+	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")	 
 	{
 		echo'<td> id habitation </td>'; 	?>
 	<td> Adresse </td>
