@@ -3,10 +3,8 @@
      <!-- pour faciliter l’ergonomie de l’utilisateur : 
   Tableau avec lignes colorées alternativement, etc.
   -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
-
+   
  <!-- pour faciliter l’ergonomie de l’utilisateur : utilisation des librairie de styles du plugin DataTables de CDN en plus de la librairie jQuery 
       - la possibilité de trier ces données à la volé (sur une ou plusieurs colonnes), 
 	    mettre au pied de ce tableau une pagination, insérer une boite de recherche dynamique, etc.
