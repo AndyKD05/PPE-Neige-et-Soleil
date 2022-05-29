@@ -119,7 +119,7 @@ switch ($page) {
 
      		 echo
 			'<li class="nav-item px-3 ">
-       			<a class="nav-link '.$menuActive21.'  text-light font-weight-bold" href="index.php?page=21">Activité de la région</a>
+       			<a class="nav-link '.$menuActive21.'  text-light font-weight-bold" href="index.php?page=21">Activités de la région</a>
       		</li>';
 
      		echo
