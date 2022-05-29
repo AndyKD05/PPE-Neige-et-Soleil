@@ -31,7 +31,7 @@
   
   <div class="collapse navbar-collapse justify-content-center" id="navbarsExample08">
   	<a class="mx-5" href="index.php?page=0">
-  		<img class src="images/logo.png" width="115" height="115"  >
+  		<img class src="images/logo.png" width="115" height="115" alt="Neige et Soleil" >
   	</a>
     <ul class="navbar-nav text-blod nav-pills">		
 
