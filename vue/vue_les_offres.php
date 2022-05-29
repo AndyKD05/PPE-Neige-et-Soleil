@@ -1,3 +1,32 @@
+
+
+     <!-- pour faciliter l’ergonomie de l’utilisateur : 
+  Tableau avec lignes colorées alternativement, etc.
+  -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>   
+
+ <!-- pour faciliter l’ergonomie de l’utilisateur : utilisation des librairie de styles du plugin DataTables de CDN en plus de la librairie jQuery 
+      - la possibilité de trier ces données à la volé (sur une ou plusieurs colonnes), 
+	    mettre au pied de ce tableau une pagination, insérer une boite de recherche dynamique, etc.
+	  - la possibilité de copier, imprimer ou d’exporter votre tableau sous format PDF, CSV ou Excel.
+	  - il faut ajouter un id au table
+	    
+      Le réseau de distribution de contenu DataTables (CDN : Content Delivery Network) est un magasin permanent du logiciel publié dans le cadre du projet DataTables 
+	  que vous pouvez utiliser sur votre site sans avoir à l'héberger vous-même.
+	  Exemples :
+	   https://www.datatables.net/examples/advanced_init/dt_events.html
+	   https://www.nicolas-verhoye.com/mettez-de-la-vie-dans-vos-tableaux-avec-jquery-datatables.html 	 
+  -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+  <script type="text/javascript">
+			$(document).ready(function() {
+				$('#Tableau').dataTable();
+			} );
+  </script>
+
 <br>
 <section class="pricing-table">
 	<div class="container">
@@ -92,49 +121,54 @@
 <!-- ********************************************************************************* --> 
 							</br>
 							</br>
-<table class="table table-striped table-dark"> 
-<tr>
+<div class="container_fluid p-3 my-3 bg-light">
+	<!-- https://www.w3schools.com/bootstrap5/bootstrap_tables.php -->
+
+<table class="table table-light table-striped table-hover " id="Tableau"> 
+<thead>
+<tr class="table-dark">
 	<?php
-	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")	 
-	{
-		echo'<td> id habitation </td>'; 	?>
-	<td> Adresse </td>
-	<td> Descriptif </td>
-	<td> Superficie </td>
-	<td> Type </td>
-	<td> Capacite d'acceuil </td>
-	<td> Surface habitable </td>
-	<td> Balcon </td>
-	<td> Distance_piste </td>
-	<td> Exposition </td>
-	<td> Cave </td>
-	<td> Local à ski </td>
-	<td> Proprietaire </td>
+	//if (isset($_SESSION['email']) and $_SESSION['role']=="emp")	 
+	{  ?>
+	<th> id </th>
+	<th> Adresse </th>
+	<th> Descriptif </th> 
+	<th> Type </th>
+	<th> Capacite </th>
+	<th> Surface </th>
+	<th> Balcon </th>
+	<th> Distance piste </th>
+	<th> Exposition </th>
+	<th> Cave </th>
+	<th> Local à ski </th>
+	<th> Proprietaire </th>
+	
 	<?php 	
 	}	
-	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
+	if  (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 	{
-	echo	"<td> Opérations </td>";
+	echo	"<th> Opérations </th>";
 	} 
-	?>
+	?> 
+	
 </tr>
-
+</thead>
+<tbody>
 <?php
-if(isset($_SESSION['email']))
+//if(isset($_SESSION['email']))
 {
 
 	foreach ($lesHabitations as $uneHabitation){
 		echo "<tr>";
-		if(($uneHabitation['idp']==$_SESSION['id'] and $_SESSION['role']=="prop") or $_SESSION['role']=="emp" or !isset($_SESSION['email']))
+		//if(($uneHabitation['idp']==$_SESSION['id'] and $_SESSION['role']=="prop") or $_SESSION['role']=="emp" or !isset($_SESSION['email']))
 		{
-			if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
+			//if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 			{
 				echo"<td>".$uneHabitation['idh']."</td>";
 			}
 			echo"
 			<td>".$uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']."</td>
-			<td>".$uneHabitation['nom_immeuble_h']."</td>
-			<td>".$uneHabitation['superficie_h']."</td>
+			<td>".$uneHabitation['nom_immeuble_h']."</td> 
 			<td>".$uneHabitation['type_h']."</td>
 			<td>".$uneHabitation['capacite_acceuil_h']."</td>
 			<td>".$uneHabitation['surface_habitable_h']."</td>
@@ -148,12 +182,14 @@ if(isset($_SESSION['email']))
 
 			
 		}
-		if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
+	 	if (isset($_SESSION['email']) and $_SESSION['role']=="emp")
 		{
 			echo "
 			<td>
-			<a href='index.php?page=2&action=sup&idh=".$uneHabitation['idh']."'><img src='images/sup.png' height='30' width='30'><a/>
-			<a href='index.php?page=2&action=edit&idh=".$uneHabitation['idh']."'><img src='images/edit.jpg' height='30' width='30'><a/>
+			<p  class = 'text-center'>
+			<a href='index.php?page=2&action=sup&idh=".$uneHabitation['idh']."'><img src='images/delete.png' height='20' width='20' title='Delete'><a/>
+			<a href='index.php?page=2&action=edit&idh=".$uneHabitation['idh']."'><img src='images/edit.jpg' height='20' width='20' title='Edit'><a/>
+			</p>
 			</td>
 			";
 		}
@@ -162,5 +198,7 @@ if(isset($_SESSION['email']))
 	
 }
 ?>
-</table>
+ </tbody>
+</table> 
+</div>
 
