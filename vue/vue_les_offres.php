@@ -15,28 +15,34 @@
 				<div class="card h-100 bg-light">
 					<div class="item">
 						<div class="heading">
-							<h3><?php echo strtoupper($uneHabitation['nom_immeuble_h']); ?></h3>
+							<h3><?php echo strtoupper($uneHabitation['nom_immeuble_h']);  
+							 $image=str_replace(" ","",$uneHabitation['nom_immeuble_h']); ?></h3>
 						</div>
 						<p><?php echo $uneHabitation['numero_h']." ".$uneHabitation['rue_h']." ".$uneHabitation['CP_h']." ".$uneHabitation['ville_h']; ?></p>						 
 						<div class="features">
 
 			<?php echo "
-						<div id='carouselExampleIndicators' class='carousel slide' data-bs-ride='carousel'>
+						<div id='{$image}' class='carousel slide' data-bs-ride='carousel'>
 							<div class='carousel-indicators'>
-								<button type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' class='active' aria-current='true' aria-label='Slide 1'></button>
-								<button type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2'></button>
-								<button type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3'></button>
+								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='0' class='active' aria-current='true' aria-label='Slide 1'></button>
+								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='1' aria-label='Slide 2'></button>
+								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='2' aria-label='Slide 3'></button>
+								<button type='button' data-bs-target='#{$image}' data-bs-slide-to='2' aria-label='Slide 4'></button>
 							</div>
 							<div class='carousel-inner'>
 								<div class='carousel-item active'>
-									<img src='css/queyras_soleil.jpg' class='card-img-top' width='100' height='250'>
+									<img src='images/{$image}_logement.jpeg' class='card-img-top' width='100' height='250'>
 								</div>
 								<div class='carousel-item'>
-									<img src='css/queyras_ete.jpg' class='card-img-top' width='100' height='250'>
+									<img src='images/{$image}_chambre.jpeg' class='card-img-top' width='100' height='250'>
 								</div>
 								<div class='carousel-item'>
-									<img src='css/spot_queyras.jpg' class='card-img-top' width='100' height='250'>
+									<img src='images/{$image}_soleil.jpeg' class='card-img-top' width='100' height='250'>
 								</div>
+								<div class='carousel-item'>
+									<img src='images/{$image}_neige.jpeg' class='card-img-top' width='100' height='250'>
+								</div>
+								
 							</div>
 							<button class='carousel-control-prev' type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev'>
 								<span class='carousel-control-prev-icon' aria-hidden='true'></span>
