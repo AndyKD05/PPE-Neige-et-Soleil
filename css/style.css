@@ -1,0 +1,58 @@
+body {
+  padding-top: 110px;
+background-color:white;
+background-image: url("queyras_soleil.jpg");
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+}
+
+
+.presentation {
+  color: rgb(255, 254, 253);
+  text-align: center;
+  height: 200px;
+}
+
+.texto {
+    font-family: 'rapscallionregular'; 
+    color: white;
+    font-size: 30px;
+}
+
+.tete
+{
+  text-align: center;
+}
+
+
+.button1 {
+  padding-right: 5px;
+  padding-left: 45px;
+
+}
+
+.logo {
+  font-size: 25px;
+  font-family: Brush Script MT;
+  text-align: start;
+}
+
+.card{
+  color: darksalmon;
+}
+
+
+
+footer{
+  position:absolute;
+  bottom:0;
+  width:100%;
+  padding-top:50px;
+  height:0px;
+}
+
+.btn btn-primary-outline{
+  color: aliceblue;
+}
