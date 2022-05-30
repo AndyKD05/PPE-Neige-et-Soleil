@@ -21,8 +21,9 @@
 		}
 
 		public function selectAll()
-		{
+		{  
 			$requete="select * from ".$this->uneTable." ; ";
+			//echo "requete=".$requete ;
 			$select= $this->unPdo->prepare($requete);
 			$select->execute();
 			return $select->fetchAll();
