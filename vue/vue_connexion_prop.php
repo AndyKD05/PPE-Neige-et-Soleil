@@ -6,13 +6,7 @@
 <div class="container">  
 <br />    
 <form method="post" class="form-inline">
-<<<<<<< HEAD
-<table class="table table-striped table-dark">
-
-<!--
-=======
 <table class="table table-striped table-info">
->>>>>>> update
 <tr>
 		<td>
       <a href="index.php?page=15">
